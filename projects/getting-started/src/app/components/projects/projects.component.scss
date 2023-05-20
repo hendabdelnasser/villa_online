@@ -1,0 +1,98 @@
+.projects-page {
+    button{
+        background-color: #1e3555;
+        color: #fff;
+        padding:5px;
+        border-radius:5px
+    }
+    button:hover{
+        background-color: #fff;
+        color: #1e3555;
+    border:1px solid #1e3555
+    }
+    .page-header {
+        background-image: url('/assets/projects/projects-header.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 4rem 0;
+        h3 {
+            color: #1E3555;
+            font-size: 35px;
+        }
+        h5 {
+            font-size: 25px;
+            color: #EA4335;
+        }
+    }
+    .page-content {
+        .content {
+            border: 1px solid #70707047;
+            padding: 3rem 25px;
+            margin-bottom: 60px;
+            .tabs-section {
+                margin: 30px 0;
+                .nav-link {
+                    background-color: #F1F1F1;
+                    color: #44444499;
+                    &.active {
+                        color: #444444;
+                        background-color: transparent;
+                    }
+                }
+            }
+            .results {
+                h5 {
+                    position: relative;
+                    padding-right: 20px;
+                    font-size: 25px;
+                    margin-bottom: 30px;
+                    margin-top: 20px;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        right: 0;
+                        height: 100%;
+                        width: 4px;
+                        background-color: #EA4335;
+                    }
+                }
+            }
+            .cards-content {
+                .project-card {
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+                    &:hover {
+                        .details {
+                            bottom: 0;
+                            background-color: rgba(255, 255, 255, 0.503);
+                            h4 {
+                                color: #383838;
+                            }
+                        }
+                    }
+                    .details {
+                        position: absolute;
+                        bottom: -34px;
+                        right: 0;
+                        width: 100%;
+                        background-color: #00000066;
+                        padding: 15px;
+                        transition: all .3s;
+                        h4 {
+                            font-size: 18px;
+                            color: #DDDDDD;
+                            margin-bottom: 10px;
+                            transition: all .3s;
+                        }
+                        p {
+                            margin: 0;
+                            color: #7C7C7C;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

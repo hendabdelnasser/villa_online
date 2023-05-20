@@ -1,0 +1,160 @@
+<div class="project-invoices">
+  <header>
+      <h4>فواتير المشروعات</h4>
+  </header>
+  <article>
+      <div class="table-responsive">
+          <table class="table table-borderless">
+              <thead>
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">اسم المشروع</th>
+                      <th scope="col"> العميل</th>
+                      <th scope="col">القيمة</th>
+                      <th scope="col">التاريخ</th>
+                      <th scope="col"></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let inv of invoices;">
+                      <th scope="row">{{inv.invoiceNo}}</th>
+                      <th>{{inv.projectName}}</th>
+                      <td>{{inv.customerName}} </td>
+                      <td>{{inv.price}} ريال</td>
+                      <td>{{inv.date | date:'dd-MM-YYYY'}}</td>
+                      <td>
+                          <div [ngClass]="inv.status==0?'not-payed':'payed'">
+                              <span *ngIf="inv.status ==0">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payModal">
+                                  لم تسدد
+                                </button>
+                              </span>
+                              <span *ngIf="inv.status ==1">
+                                  تم السداد
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                  </svg>
+                              </span>
+                          </div>
+                      </td>
+                      <div class="modal fade bill-payment-modal" id="billPaymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-lg">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">عملية سداد فاتورة</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                          </svg>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <div class="alert-section">
+                                          <div class="alert-img my-2">
+                                              <img src="/assets/icons/alert.png" alt="" srcset="">
+                                          </div>
+                                          <div class="alert-txt my-2 mx-3">
+                                              <ul class="list-unstyled">
+                                                  <li>
+                                                      <span>اسم المشروع : </span>
+                                                      <span class="mx-1">قصر جاردينيا</span>
+                                                  </li>
+                                                  <li>
+                                                      <span>وصف العملية :</span>
+                                                      <span class="mx-1">تكاليف تصميم و حفر أساسات قصر الامير “بندر بن عبد العزيز”</span>
+                                                  </li>
+                                                  <li>
+                                                      <span>القيمة الكلية :</span>
+                                                      <span class="mx-1">{{inv.price}} ريال سعودي</span>
+                                                  </li>
+                                                  <li>
+                                                      <span>تاريخ العملية :</span>
+                                                      <span class="mx-1">22 رجب 1442</span>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                      <div class="mb-4 row">
+                                          <label for="staticEmail" class="col-sm-3 col-form-label">طريقة الدفع</label>
+                                          <div class="col-sm-9">
+                                              <div class="select-payment">
+                                                  <div class="button">
+                                                      <input type="radio" id="a25" name="check-substitution-2" />
+                                                      <label class="btn btn-default p-1" for="a25">
+                                                          <img src="/assets/icons/pay.png" alt="" srcset="">
+                                                      </label>
+                                                  </div>
+                                                  <div class="button">
+                                                      <input type="radio" id="a50" name="check-substitution-2" />
+                                                      <label class="btn btn-default p-1" for="a50">
+                                                          <img src="/assets/icons/master.png" alt="" srcset="">
+                                                      </label>
+                                                  </div>
+                                                  <div class="button">
+                                                      <input type="radio" id="a75" name="check-substitution-2" />
+                                                      <label class="btn btn-default p-1" for="a75">
+                                                          <img src="/assets/icons/visa.png" alt="" srcset="">
+                                                      </label>
+                                                  </div>
+                                                  <div class="button">
+                                                      <input type="radio" id="a85" name="check-substitution-2" />
+                                                      <label class="btn btn-default p-1" for="a85">
+                                                          <img src="/assets/icons/mada.png" alt="" srcset="">
+                                                      </label>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="mb-4 row">
+                                          <label for="staticEmail" class="col-sm-3 col-form-label">رقم الكارت</label>
+                                          <div class="col-sm-9">
+                                              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="0000 0000 0000 0000">
+                                          </div>
+                                      </div>
+                                      <div class="mb-4 row">
+                                          <label for="staticEmail" class="col-sm-3 col-form-label">الصلاحية</label>
+                                          <div class="col-sm-9">
+                                              <div class="row">
+                                                  <div class="col-lg-7 mb-2">
+                                                      <input type="text" class="form-control mb-2" id="formGroupExampleInput" placeholder="شهر / سنة">
+                                                      <span>تاريخ انتهاء الصلاحية</span>
+                                                  </div>
+                                                  <div class="col-lg-5 mb-2">
+                                                      <input type="text" class="form-control mb-2" id="formGroupExampleInput" placeholder="الكود">
+                                                      <span>cvv</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="mb-4 row">
+                                          <label for="staticEmail" class="col-sm-3 col-form-label">اسم صاحب الكارت</label>
+                                          <div class="col-sm-9">
+                                              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="الاسم كما يظهر على الكارت">
+                                          </div>
+                                      </div>
+                                      <div class="mb-4 row">
+                                          <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                                          <div class="col-sm-9">
+                                              <div class="form-check">
+                                                  <input class="form-check-input" type="checkbox" id="gridCheck2">
+                                                  <label class="form-check-label" for="gridCheck2">
+                                                      ارسال دعوة عن طريق البريد الالكتروني لاتمام التسجيل
+                                                  </label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary">ادفع</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </article>
+</div>

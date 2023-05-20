@@ -1,0 +1,98 @@
+
+    <div class="mb-4 row">
+      <div class="col-sm-12">
+          <p>يرجي ادخال البيانات و المرفقات للمشاريع التالية </p>
+          <h5>المشاريع المطلوبة</h5>
+          <ul class="list-unstyled">
+            <li *ngFor="let project of RequiredInCurrant">
+              <button class="btn btn-link btn-proj my-2" (click)="showModal2(project.id)">
+                اسم المشروع :
+                {{project.name}}
+              </button>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <nz-modal [(nzVisible)]="isVisible2" nzTitle=" بيانات و مرفقات المشروع" (nzOnCancel)="handleCancel2()" (nzOnOk)="handleOk2()" >
+      <div *nzModalContent >
+        <ng-container *ngFor="let serv of project.projectServices">
+          <ng-container *ngFor="let ph of serv.projectPhases">
+            <div class="row" *ngIf="ph?.isCurrant">
+              <div class="col-lg-12 mb-3"   *ngIf="ph.inputsNames?.length !== 0">
+                <div class="files">
+                  <h5 class="text-decoration-underline">الخدمة :{{serv?.service?.name}} / المرحلة {{ph?.title}}
+                  </h5>
+                  <p>اولا : الملفات
+                    <span  *ngFor="let fileName of ph?.inputsNames">{{fileName.name}} / </span>
+
+                    </p>
+                  <div class="upload-files" >
+                      <div class="add-file-btn" >
+                          <button>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                              </svg>
+                              <input id="file" #file type="file" class="form-control" multiple="" accept="png,jpg,pdf"
+                              (change)="uploadFile(file.files)">
+                          </button>
+                      </div>
+                      <div class="img-ulpoad add-file-btn">
+                          <div class="form-group d-flex">
+                              <div *ngFor='let url of images;let i=index' class="position-relative">
+                                  <img [src]="url">
+                                  <div class="delete-btn">
+                                      <button (click)="deleteImg(i)">
+                                          <img src="/assets/icons/delete-icon.png" alt="" srcset="">
+                                      </button>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                      <p *ngIf="ph?.inputs?.length== 0 && images.length ==0">لا توجد مرفقات للمشروع</p>
+                      <ng-container *ngFor="let doc of ph?.inputs">
+                        <lightgallery [settings]="settings" [onInit]="onInit">
+                          <a *ngFor="let item of doc.projectPhaseDocumentLists" [attr.data-lg-size]="100" className="gallery-item"
+                            [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                            <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg'||'jpeg'||'png'" />
+                            <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                          </a>
+                        </lightgallery>
+                      </ng-container>
+
+                  </div>
+                  <div class="row">
+                     <span class="col-md-6">* يمكنك رفع ملفات و مرفقات المشروع بصيغ pdf, jpg, png</span>
+                    <button  class="add-stage col-md-3" (click)="updateIsReview(ph.id,1) ">
+                      تحميل الملفات
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+              <h5>ثانيا : البيانات </h5>
+              <div class="col-lg-12 mb-3" *ngIf="ph.data?.length !== 0">
+                 <ng-container *ngFor="let data of ph?.data;let i = index">
+                      <div class="row mt-2" *ngIf="data.value" >
+                          <p class="col-md-3">{{data.name}} :<span > {{data.value}}</span> </p>
+
+                      </div>
+                      <div class="row mt-2" *ngIf="!data.value" >
+                          <p class="col-md-3">{{data.name}} : </p>
+                          <input class="col-md-3" type="text" [(ngModel)]="dataValue[i]" name="data_{{i}}">
+                          <button class="col-md-3" (click)="AddData(ph.id,data.id,i)">اضافة </button>
+                      </div>
+                  </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+
+      </div>
+      <!-- <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleCancel2()">الغاء</button>
+      </div> -->
+    </nz-modal>

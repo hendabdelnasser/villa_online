@@ -1,0 +1,337 @@
+<section class="proj-details">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">تفاصيل مشروع</h3>
+            <h5>
+                ملف عميل
+            </h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="tabs-section">
+                    <div class="row">
+                        <div class="col-lg-3 my-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">المرحلة الحالية</button>
+                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">ملخص المشروع</button>
+                                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">الفواتير</button>
+                                <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">ملاحظات</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 my-3" *ngIf="isLoaded">
+                            <div class="tab-content" id="v-pills-tabContent">
+                              <!--currant phase-->
+                                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                    <div class="curent-stage-tab">
+                                        <header>
+                                            <h4>  {{projectDetails.name}}</h4>
+                                            <button routerLink="/contractor-projects">
+                                                <span class="mx-2">عودة</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                            </button>
+                                        </header>
+                                        <article>
+                                            <div class="details">
+                                                <div class="row justify-content-between align-items-center">
+                                                    <div class="col-lg-7 my-3">
+                                                        <div class="txt-sec">
+                                                            <p><span style="color:#a09f9f">وصف المشروع : </span>
+                                                                {{projectDetails.description}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 my-3">
+                                                        <div class="more-info">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    الموقع
+                                                                    <span class="mx1"> {{region.name}}</span>
+                                                                </li>
+                                                                <li>
+                                                                    بدأ في
+                                                                    <span class="mx1">{{projectDetails.date}}  </span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="percentag">
+                                                                <div class="percentage-content">
+                                                                    <h6>نسبة التنفيذ</h6>
+                                                                    <div class="bg-cont">
+                                                                        <div class="percentge-cls"  [ngStyle]="{'width':projectDetails.percent+'%'}"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="percentage-num mx-2">
+                                                                    <h5>
+                                                                        <span>{{projectDetails.percent}}</span> %
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 my-3">
+                                                      <h4>مرفقات المشروع</h4>
+                                                      <div class=" upload-files">
+                                                        <p *ngIf="projectDetails.projectDocuments.length === 0">لا توجد مرفقات للمشروع</p>
+
+                                                        <div class="img-ulpoad">
+                                                          <!-- <ng-container  *ngFor="let img of projectDetails.projectDocuments">
+                                                            <img class="img-thumbnails" [src]="imgUrl+img.url" [alt]="img.name" srcset="">
+                                                          </ng-container> -->
+                                                          <ng-container>
+                                                            <lightgallery [settings]="settings" [onInit]="onInit">
+                                                              <a *ngFor="let item of projectDetails.projectDocuments" [attr.data-lg-size]="100" className="gallery-item"
+                                                               [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                                                                <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg' ||'jpeg'||'png'" />
+                                                                <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                                                              </a>
+                                                            </lightgallery>
+                                                          </ng-container>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngFor="let serv of projectDetails.projectServices">
+                                              <div  *ngFor="let ph of serv.projectPhases">
+                                                <div class="digging-foundations" *ngIf="ph?.isCurrant">
+                                                    <div class="title">
+                                                        <h4>
+                                                            <img src="/assets/icons/title-icon.png" width="15px" alt="" srcset="">
+                                                            <span class="mx-2">
+                                                              الخدمة : {{serv?.service?.name}} /
+                                                              المرحلة : {{ph?.title}}
+                                                            </span>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="more-info">
+                                                        <div class="row">
+                                                          <div class="col-lg col-md-4 mb-3">
+                                                            <div class="txt">
+                                                                <p>
+                                                                    المقاول
+                                                                    <span class="mx-3">
+                                                                        {{ph?.userName}}
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg col-md-4 mb-3">
+                                                            <div class="txt">
+                                                                <p>
+                                                                  تاريخ البدأ
+                                                                    <span class="mx-3">
+                                                                        {{ph?.dateStart | date:'yyyy-MM-dd'}}
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg col-md-4 mb-3">
+                                                            <div class="txt">
+                                                                <p>
+                                                                    وزن المرحلة
+                                                                    <span class="mx-1">
+                                                                        {{ph?.doneWight }}%
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg col-md-6 mb-3">
+                                                                <div class="txt">
+                                                                    <p>
+                                                                        الحالة
+                                                                        <span class="mx-3">
+                                                                            {{ph?.isDone?'تمت':'لم تتم'}}
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg col-md-6 mb-3">
+                                                                <div class="txt">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <p class="m-0">المراجعة</p>
+                                                                        <span class="mx-3" *ngIf="!ph?.isDone">
+                                                                            {{ph?.isReview?'تمت':'لم تتم'}}
+                                                                        </span>
+                                                                        <button type="button" *ngIf="ph?.isDone" class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#stageOutcomesModal">
+                                                                            تقييم المرحلة
+                                                                        </button>
+                                                                        <!--موديل تقييم المرحلة-->
+                                                                        <div class="modal fade stage-outcomes-modal" id="stageOutcomesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">تقييم مخرجات المرحلة</h5>
+                                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                                                                </svg>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="row justify-content-between">
+                                                                                                <div class="col-lg-6 order-2 order-lg-1 my-3">
+                                                                                                    <div class="form-content">
+                                                                                                        <div class="mb-4">
+                                                                                                            <label for="staticEmail" class="col-form-label">تقييم</label>
+                                                                                                            <div class="d-flex align-items-center">
+                                                                                                                <nz-rate [(ngModel)]="value" [nzTooltips]="tooltips"></nz-rate>
+                                                                                                                <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : '' }}</span>
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="mb-4">
+                                                                                                            <label for="staticEmail" class="col-form-label">ملاحظات</label>
+                                                                                                            <div class="">
+                                                                                                                <textarea class="form-control" name="notes" [(ngModel)]="notes" id="exampleFormControlTextarea1" value="لا توجد ملاحظات" rows="5"></textarea>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-lg-5 order-1 order-lg-2 my-3">
+                                                                                                    <div class="img-sec">
+                                                                                                        <img class="w-100" src="/assets/modals/modal-img.png" alt="" srcset="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-primary" (click)="updatePhase(ph.id)">حفظ</button>
+                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-sec">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 mb-3"   *ngIf="ph.inputsNames?.length !== 0">
+                                                              <div class="files">
+                                                                <h5 class="text-decoration-underline"> مدخلات المشروع</h5>
+                                                                <p>اولا : الملفات
+                                                                  <span  *ngFor="let fileName of ph?.inputsNames">{{fileName.name}} / </span>
+
+                                                                  </p>
+                                                                <div class="upload-files" >
+                                                                    <div class="add-file-btn" >
+                                                                        <button>
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                                            </svg>
+                                                                            <input id="file" #file type="file" class="form-control" multiple="" accept="png,jpg,pdf"
+                                                                            (change)="uploadFile(file.files)">
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="img-ulpoad add-file-btn">
+                                                                        <div class="form-group d-flex">
+                                                                            <div *ngFor='let url of images;let i=index' class="position-relative">
+                                                                                <img [src]="url">
+                                                                                <div class="delete-btn">
+                                                                                    <button (click)="deleteImg(i)">
+                                                                                        <img src="/assets/icons/delete-icon.png" alt="" srcset="">
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <p *ngIf="ph?.inputs?.length== 0 && images.length ==0">لا توجد مرفقات للمشروع</p>
+                                                                    <ng-container *ngFor="let doc of ph?.inputs">
+                                                                      <lightgallery [settings]="settings" [onInit]="onInit">
+                                                                        <a *ngFor="let item of doc.projectPhaseDocumentLists" [attr.data-lg-size]="100" className="gallery-item"
+                                                                          [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                                                                          <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg'||'jpeg'||'png'" />
+                                                                          <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                                                                        </a>
+                                                                      </lightgallery>
+                                                                    </ng-container>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                   <span class="col-md-6">* يمكنك رفع ملفات و مرفقات المشروع بصيغ pdf, jpg, png</span>
+                                                                  <button  class="add-stage col-md-3" (click)="updateIsReview(ph.id,1) ">
+                                                                    تحميل الملفات
+                                                                  </button>
+                                                                </div>
+
+                                                              </div>
+
+                                                            </div>
+                                                            <h5>ثانيا : البيانات </h5>
+                                                            <div class="col-lg-12 mb-3" *ngIf="ph.data?.length !== 0">
+                                                               <ng-container *ngFor="let data of ph?.data; let i = index">
+                                                                    <div class="row mt-2" *ngIf="data.value" >
+                                                                        <p class="col-md-3">{{data.name}} :<span > {{data.value}}</span> </p>
+
+                                                                    </div>
+                                                                    <div class="row mt-2" *ngIf="!data.value" >
+                                                                        <p class="col-md-3">{{data.name}} : </p>
+                                                                        <input class="col-md-3" type="text" [(ngModel)]="dataValue[i]" name="data_{{i}}">
+                                                                        <button class="col-md-3" (click)="AddData(ph.id,data.id,i)">اضافة </button>
+                                                                    </div>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                      <div class="txt">
+                                                          <div class="files">
+                                                            <h5 class="text-decoration-underline"> مخرجات المشروع</h5>
+                                                            <p>الملفات المطلوبة :
+                                                              <span  *ngFor="let fileName of ph?.outputsNames">{{fileName.name}} / </span>
+                                                              </p>
+                                                            <div class="upload-files">
+                                                                <p *ngIf="ph.outputs?.length == 0 ">لا توجد مرفقات للمشروع</p>
+                                                                <ng-container *ngFor="let doc of ph.outputs">
+
+                                                                  <lightgallery [settings]="settings" [onInit]="onInit">
+                                                                    <a *ngFor="let item of doc.projectPhaseDocumentLists" [attr.data-lg-size]="100" className="gallery-item"
+                                                                     [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                                                                      <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg'||'jpeg'||'png'" />
+                                                                      <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                                                                    </a>
+                                                                  </lightgallery>
+                                                                </ng-container>
+
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </article>
+                                    </div>
+                                </div>
+                                <!--Details-->
+                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                   <app-phases-detail></app-phases-detail>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                    <app-pills-detail></app-pills-detail>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                    <app-notes-detail></app-notes-detail>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+                          <img width="128" height="128" src="/assets/icons/loading.gif" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

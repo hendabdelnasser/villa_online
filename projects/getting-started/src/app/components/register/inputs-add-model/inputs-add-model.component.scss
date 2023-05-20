@@ -1,0 +1,93 @@
+
+.ant-modal-body{
+  button{
+    background-color: #1e3555;
+    color: #fff;
+    padding:5px;
+    border-radius:5px
+}
+button:hover{
+    background-color: #fff;
+    color: #1e3555;
+border:1px solid #1e3555
+}
+.img-thumbnails{
+  width: 100px;
+height: 100px;
+}
+.upload-files {
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  background-color: #EEEEEE;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 10px;
+  border: 2px dashed #afaeae;
+  max-width: 600px;
+
+.img-ulpoad {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  position: relative;
+  img {
+      width: 100px;
+      height: 100px;
+      border-radius: 4px;
+  }
+  .delete-btn {
+      position: absolute;
+      top: 0px;
+      right: 5px;
+      button {
+          all: unset;
+          cursor: pointer;
+          img {
+              width: 15px;
+              height: 15px;
+          }
+      }
+  }
+}
+  .add-file-btn {
+      margin-left: 5px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      button {
+          width: 100px;
+          height: 100px;
+          border-radius: 4px;
+          background-color: #d1cdcd;
+          border: none;
+          svg {
+              color: #fff;
+          }
+      }
+  }
+  .img-ulpoad {
+      margin-left: 5px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      position: relative;
+      img {
+          width: 100px;
+          height: 100px;
+          border-radius: 4px;
+      }
+      .delete-btn {
+          position: absolute;
+          top: 0px;
+          right: 5px;
+          button {
+              all: unset;
+              cursor: pointer;
+              img {
+                  width: 15px;
+                  height: 15px;
+              }
+          }
+      }
+  }
+}
+}

@@ -1,0 +1,73 @@
+<app-header></app-header>
+<section class="projects-page">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">مشروعاتنا</h3>
+            <h5>
+                تصفح جميع مشروعاتنا هنا
+            </h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+              <div class="results">
+                <h5>
+                    {{project1.length}} نتائج
+                </h5>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-6"  *ngFor="let item of project1">
+                  <img class="w-100 my-2" style="height: 160px;" [src]="imgUrl + item.url" alt="" srcset="">
+                </div>
+              </div>
+                <!-- <div class="tabs-section">
+                  <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">الاعمال بالعظم</button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">الاعمال بالتشطيب</button>
+
+                  </div>
+                </div>
+
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="results">
+                      <h5>
+                          {{project1.length}} نتائج
+                      </h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let item of project1">
+                          <div class="project-card h-100">
+                              <div class="details">
+                                  <h4>{{item.title}}</h4>
+                                  <p>{{item.data}}</p>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                      <div class="results">
+                        <h5>
+                           {{project2.length}} نتائج
+                        </h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let item of project2">
+                            <div class="project-card h-100">
+                              <img class="w-100"  [src]="imgUrl + item.url" alt="" srcset="">
+                              <div class="details">
+                                <h4>{{item.title}}</h4>
+                                <p>{{item.data}}</p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,179 @@
+<section class="project-manager">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">لوحة التحكم</h3>
+            <h5>
+                مدير المشروع
+            </h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="tabs-section">
+                    <div class="row">
+                        <div class="col-lg-3 my-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="v-pills-services-tab" data-bs-toggle="pill" data-bs-target="#v-pills-services" type="button" role="tab" aria-controls="v-pills-services" aria-selected="true">الخدمات</button>
+                                <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">المشروعات</button>
+                                <button class="nav-link" id="v-pills-admin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-admin" type="button" role="tab" aria-controls="v-pills-admin" aria-selected="false">الموظفين</button>
+                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">العملاء</button>
+                                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">المقاولون</button>
+                                <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">الفواتير</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 my-3">
+                            <div class="tab-content" id="v-pills-tabContent">
+                              <!--Services-->
+                                <div class="tab-pane fade show active" id="v-pills-services" role="tabpanel" aria-labelledby="v-pills-services-tab">
+                                    <app-service-invoice></app-service-invoice>
+                                </div>
+                                <!--Projects-->
+                                <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                    <div class="projects-tab">
+                                        <header>
+                                            <h4>تصفية النتائج</h4>
+                                        </header>
+                                        <article *ngIf="isLoaded">
+                                            <div class="form-section">
+                                                <form class="row g-3" [formGroup]="form" (ngSubmit)="searchProjects()">
+                                                    <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                                        <input type="text" class="form-control" formControlName="keyword" placeholder="اسم المشروع">
+                                                    </div>
+                                                    <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                                        <select id="inputState" class="form-select" formControlName="regionId" >
+                                                            <option selected value="0">المنطقة</option>
+                                                            <option *ngFor="let region of regions" value="{{region.id}}">{{region.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                                      <select class="form-select" formControlName="projectType" >
+                                                        <option selected value="0">نوع المشروع</option>
+                                                        <option *ngFor="let projType of projectType" value="{{projType.id}}">{{projType.name}}</option>
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                                      <nz-date-picker nzMode="year" formControlName="year" nzPlaceHolder="اختر السنة"></nz-date-picker>
+
+                                                    </div>
+                                                    <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                                        <button>بحث</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="results">
+                                                <h5><span *ngIf="Projects">{{Projects.length}}</span>
+                                                    نتائج البحث
+                                                </h5>
+                                                <div class="filter">
+                                                    <button class="mx-2">
+                                                        <img src="/assets/icons/filter2.png" alt="" srcset="" (click)=" filterProject(1)">
+                                                    </button>
+                                                    <button>
+                                                        <img src="/assets/icons/filter1.png" alt="" srcset="" (click)=" filterProject(2)">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="tab-cards-content">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-6 mb-4">
+                                                        <div class="project-card add-card h-100">
+                                                            <button class="add-project" (click)="newProject()">
+                                                                <img src="/assets/icons/add-icon.png" alt="" srcset="">
+                                                                <span>إضافة مشروع</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                  <p *ngIf="Projects.length === 0">لا توجد مشروعــــات</p>
+                                                    <div *ngFor = "let p of Projects;let index=index" class="col-md-4 col-sm-6 mb-4" >
+                                                        <div  class="project-card">
+                                                            <div *ngIf="filter==2">
+                                                                <img class="w-100 img-height" *ngIf="p.projectDocuments.length !== 0" [src]="imgUrl+p.projectDocuments[0].url" alt="" srcset="">
+                                                                <img class="w-100 img-height" *ngIf="p.projectDocuments.length == 0" src="/assets/services/services2.png" alt="" srcset="">
+                                                            </div>
+                                                             <div class="percentag" *ngIf="filter==1">
+                                                                <div class="img">
+                                                                    <img class="w-100 img-height" src="/assets/icons/percentage.png" alt="" srcset="">
+                                                                    <span>{{p.percent}} %</span>
+                                                                </div>
+                                                            </div>
+                                                             <div class="details">
+                                                                <p hidden scope="row">{{p.id}}</p>
+
+                                                                <h4>
+                                                                    {{p.name}}
+                                                                    <span class="mx-2">
+                                                                        {{p.description}}
+                                                                    </span>
+                                                                </h4>
+                                                                <div class="dropdown">
+                                                                  <button class="" type="button" id=`dropDown${index}` data-bs-toggle="dropdown" aria-expanded="false">
+                                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                                                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                                                      </svg>
+                                                                  </button>
+                                                                  <ul class="dropdown-menu" aria-labelledby=`dropDown${index}`>
+                                                                      <!-- <li>
+                                                                          <a class="dropdown-item" [routerLink]="['/update-project/', p['id']]">
+                                                                              <span>تعديل</span>
+                                                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                                                                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                                                              </svg>
+                                                                          </a>
+                                                                      </li> -->
+                                                                      <li>
+                                                                          <a class="dropdown-item" (click)="deleteProject(p['id'], index)">
+                                                                              <span>حذف</span>
+                                                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                                              </svg>
+                                                                          </a>
+                                                                      </li>
+                                                                  </ul>
+                                                              </div>
+                                                            </div>
+
+                                                            <div class="view">
+                                                                <a (click)="ProjectDetails(p.id)">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                         </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+                                          <img width="128" height="128" src="/assets/icons/loading.gif" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Admin-->
+                                <div class="tab-pane fade" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
+                                  <app-admin-invoice></app-admin-invoice>
+                               </div>
+                                <!--Customer-->
+                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                   <app-clients-invoice></app-clients-invoice>
+                                </div>
+                                <!--Constractor-->
+                                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                    <app-constructors-invoice></app-constructors-invoice>
+                                </div>
+                                <!--Invoices-->
+                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                    <app-pills-invoice></app-pills-invoice>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

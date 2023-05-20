@@ -1,0 +1,188 @@
+.contractor-projects {
+    button{
+        background-color: #1e3555;
+        color: #fff;
+        padding:5px;
+        border-radius:5px
+    }
+    button:hover{
+        background-color: #fff;
+        color: #1e3555;
+    border:1px solid #1e3555
+    }
+    .img-height{
+      height:300px
+    }
+    .page-header {
+        background-image: url('/assets/projects/projects-header.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 4rem 0;
+        h3 {
+            color: #1E3555;
+            font-size: 35px;
+        }
+        h5 {
+            font-size: 25px;
+            color: #EA4335;
+        }
+    }
+    .page-content {
+        .content {
+            border: 1px solid #70707047;
+            padding: 3rem 25px;
+            margin-bottom: 60px;
+            .clients {
+                header {
+                    h4 {
+                        color: #343434;
+                        margin-bottom: 25px;
+                    }
+                }
+                article {
+                    .form-section {
+                        margin-bottom: 30px;
+                        border-bottom: 1px solid #e4e4e4;
+                        select {
+                            background-position: left 0.75rem center;
+                            padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+                            color: #444;
+                            background-color: #eeeeee;
+                        }
+                        ::placeholder {
+                            color: #444;
+                        }
+                        input {
+                            color: #444;
+                            background-color: #eeeeee;
+                        }
+                        button {
+                            width: 100%;
+                            background: #1e3555;
+                            border: 1px solid #1e3555;
+                            min-height: 38px;
+                            border-radius: 0.25rem;
+                            color: #fff;
+                            outline: none;
+                            transition: all .3s;
+                            &:hover {
+                                background-color: transparent;
+                                color: #1E3555;
+                            }
+                        }
+                    }
+                    .results {
+                        h5 {
+                            position: relative;
+                            padding-right: 20px;
+                            font-size: 20px;
+                            margin-bottom: 30px;
+                            margin-top: 20px;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                right: 0;
+                                height: 100%;
+                                width: 4px;
+                                background-color: #EA4335;
+                            }
+                        }
+                    }
+                }
+            }
+            .cards-content {
+                .project-card {
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+                    &:hover {
+                        .details {
+                            bottom: 0;
+                            background-color: #00000066;
+                            h4 {
+                                color: #fff;
+                                span {
+                                    color: #ddd;
+                                }
+                            }
+                        }
+                        .view {
+                            opacity: 1;
+                        }
+                    }
+                    .details {
+                        position: absolute;
+                        bottom: -34px;
+                        right: 0;
+                        width: 100%;
+                        z-index: 99;
+                        background-color: #ffffff87;
+                        padding: 15px;
+                        transition: all .3s;
+                        h4 {
+                            font-size: 16px;
+                            color: #000;
+                            margin-bottom: 10px;
+                            transition: all .3s;
+                            span {
+                                font-size: 13px;
+                                color: #7c7c7c;
+                                transition: all .3s;
+                            }
+                        }
+                        .prgress-sec {
+                            display: flex;
+                            align-items: center;
+                            .progress {
+                                position: relative;
+                                height: 11px;
+                                background-color: #b0b0b0;
+                                width: 100%;
+                                .percentage {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    background-color: #ea4335;
+                                    height: 100%;
+                                }
+                            }
+                            span {
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .mail {
+                        position: absolute;
+                        top: 3px;
+                        right: 8px;
+                        z-index: 999;
+                        a {
+                            svg {
+                                color: #1e3555;
+                            }
+                        }
+                    }
+                    .view {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: #ffffff57;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: all .3s;
+                        a {
+                            svg {
+                                color: #1e3555;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

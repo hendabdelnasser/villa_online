@@ -1,0 +1,29 @@
+<app-header></app-header>
+<section class="about-page">
+  <div class="page-header">
+    <div class="container">
+      <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+        style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">إعرف عنا
+      </h3>
+      <h5>اعرف المزيد عنا و عن مهمتنا</h5>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="container">
+      <h3>عن فيلا<span style="color: #e73845;font-size: 4rem;">.</span>أونلاين</h3>
+      <div class="content row justify-content-center align-items-center">
+        <ng-container *ngFor="let p of projects">
+          <div class="txt-info mb-5 col-md-10 co-12">
+            <h5>{{p.title}}</h5>
+            <p>{{p.data}}</p>
+            <div class="col-10" *ngIf="p.url">
+              <img width='100%' [src]="imgUrl + p.url">
+            </div>
+          </div>
+        </ng-container>
+        <!-- <img class="col-4  d-none d-lg-block" src="/assets/send-img/Picture13.png" alt=""> -->
+
+      </div>
+    </div>
+  </div>
+</section>

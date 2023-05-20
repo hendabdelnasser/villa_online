@@ -1,0 +1,268 @@
+<div class="project-summary-tab">
+  <header>
+      <h4> {{projectDetails.name}} </h4>
+      <button routerLink="/contractor-projects">
+          <span class="mx-2">عودة</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+      </button>
+  </header>
+  <article>
+      <div class="details">
+          <div class="row justify-content-between align-items-center">
+              <div class="col-lg-7 my-3">
+                  <div class="txt-sec">
+                    <p><span style="color:#a09f9f">وصف المشروع : </span>
+                      {{projectDetails.description}}
+                      </p>
+                  </div>
+              </div>
+              <div class="col-lg-4 my-3">
+                  <div class="more-info">
+                      <ul class="list-unstyled">
+                          <li>
+                              الموقع
+                              <span class="mx1">{{region.name}} </span>
+                          </li>
+                          <li>
+                              بدأ في
+                              <span class="mx1">{{projectDetails.date}}</span>
+                          </li>
+                      </ul>
+                      <div class="percentag">
+                          <div class="percentage-content">
+                              <h6>نسبة التنفيذ</h6>
+                              <div class="bg-cont">
+                                  <div class="percentge-cls" [ngStyle]="{'width': projectDetails.percent+'%'}"></div>
+                              </div>
+                          </div>
+                          <div class="percentage-num mx-2">
+                              <h5>
+                                  <span>{{projectDetails.percent}}</span> %
+                              </h5>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <ng-container *ngFor="let service of projectDetails.projectServices">
+        <div class="digging-foundations" *ngFor="let phase of service.projectPhases;let i = index"
+          [ngClass]="phase?.isDone?'':'gray-border'" >
+          <div class="title">
+              <h4>
+                  <span class="mx-2"> خدمة : {{service.service?.name || service.name}} / مرحلة : {{phase?.title}}</span>
+              </h4>
+          </div>
+          <div class="more-info">
+            <div class="row">
+              <div class="col-lg col-md-6 mb-3">
+                <div class="txt">
+                    <p>
+                        المقاول
+                        <span class="mx-1">
+                            {{phase?.userName}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+              <div class="col-lg col-md-6 mb-3">
+                <div class="txt">
+                    <p>
+                        تاريخ
+                        <span class="mx-1">
+                            {{phase?.dateStart | date:'dd-MM-YYYY'}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg col-md-6 mb-3">
+              <div class="txt">
+                  <p>
+                      وزن المرحلة
+                      <span class="mx-1">
+                          {{phase?.doneWight }}%
+                      </span>
+                  </p>
+              </div>
+          </div>
+            </div>
+              <div class="row">
+                  <div class="col-lg col-md-6 mb-3">
+                      <div class="txt">
+                          <p>
+                              الحالة
+                              <span class="mx-1">
+                                  {{phase?.isDone? 'تمت':'لم تتم'}}
+                              </span>
+                          </p>
+                      </div>
+                  </div>
+                  <div class="col-lg col-md-6 mb-3">
+                      <div class="txt">
+                          <p>
+                              المراجعة
+                              <span class="mx-1" *ngIf="phase?.isDone && phase?.isReview || !phase?.isDone">
+                                <span *ngIf="!phase?.isReview"> لم تتم</span>
+                                <nz-rate [(ngModel)]="phase.review" nzDisabled *ngIf="phase?.isReview"></nz-rate>
+                              </span>
+
+                            <!-- <button type="button" (click)="showModal(phase.id)"  *ngIf="phase?.isDone && !phase?.isReview"
+                              class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#stageOutcomesModal">
+                              تقييم المرحلة
+                          </button> -->
+                          <button nz-button [nzType]="'primary'" (click)="showModal(phase.id)" *ngIf="phase?.isDone && !phase?.isReview">تقييم مخرجات المرحلة</button>
+
+                          </p>
+                      </div>
+                  </div>
+
+
+                  <div class="col-lg-12 mb-3">
+                      <div class="txt">
+                          <div class="files">
+                            <div class="form-sec">
+                              <div class="row">
+                                  <div class="col-lg-12 mb-3"   *ngIf="phase.inputsNames?.length !== 0">
+                                    <div class="files">
+                                      <h5 class="text-decoration-underline"> مدخلات المشروع</h5>
+                                      <p >اولا : الملفات
+                                        <span  *ngFor="let fileName of phase?.inputsNames">{{fileName.name}} / </span>
+                                      </p>
+                                        <div class="upload-files" >
+                                        <p *ngIf="phase?.inputs?.length== 0 ">لا توجد مرفقات للمشروع</p>
+                                        <ng-container *ngFor="let doc of phase?.inputs">
+                                          <lightgallery [settings]="settings" [onInit]="onInit">
+                                            <a *ngFor="let item of doc.projectPhaseDocumentLists" [attr.data-lg-size]="100" className="gallery-item"
+                                              [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                                              <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg'||'jpeg'||'png'" />
+                                              <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                                            </a>
+                                          </lightgallery>
+                                        </ng-container>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <h5>ثانيا : البيانات </h5>
+                                  <div class="col-lg-12 mb-3" *ngIf="phase.data?.length !== 0">
+                                     <ng-container *ngFor="let data of phase?.data">
+                                          <div class="row mt-2" *ngIf="data.value" >
+                                              <p class="col-md-3">{{data.name}} :<span > {{data.value}}</span> </p>
+
+                                          </div>
+                                          <div class="row mt-2" *ngIf="!data.value" >
+                                              <p >{{data.name}} :<span > لم يتم ادخال البيانات</span> </p>
+                                          </div>
+                                      </ng-container>
+                                  </div>
+                              </div>
+
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-12 mb-3">
+                    <div class="txt">
+                        <div class="files">
+                          <h5 class="text-decoration-underline"> مخرجات المشروع</h5>
+                          <p>الملفات المطلوبة :
+                            <span  *ngFor="let fileName of phase?.outputsNames">{{fileName.name}} / </span>
+                          </p>
+                          <div class="upload-files">
+
+                              <p *ngIf="phase.outputs?.length == 0">لا توجد مرفقات للمشروع</p>
+                              <ng-container *ngFor="let doc of phase.outputs">
+
+                                <lightgallery [settings]="settings" [onInit]="onInit">
+                                  <a *ngFor="let item of doc.projectPhaseDocumentLists" [attr.data-lg-size]="100" className="gallery-item"
+                                   [attr.href]="imgUrl+item.url" [attr.title]="fileType(item.name)==='pdf'?'قم بتحميل ملف من زر التحميل بالاعلي':''">
+                                    <img className="img-responsive " class="img-thumbnails" src="{{imgUrl+item.url}}" *ngIf="fileType(item.name) === 'jpg'||'png'||'jpeg'" />
+                                    <img className="img-responsive " class="img-thumbnails" src="/assets/icons/pdf.jpg" *ngIf="fileType(item.name) === 'pdf'" />
+                                  </a>
+                                </lightgallery>
+                              </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+      </ng-container>
+
+  </article>
+</div>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="تقييم مخرجات المرحلة" (nzOnCancel)="handleCancel()" (nzOnOk)="updatePhase()">
+      <ng-container *nzModalContent>
+        <div class="row justify-content-between">
+          <div class="col-lg-6 order-2 order-lg-1 my-3">
+            <div class="form-content">
+              <div class="mb-4">
+                  <label for="staticEmail" class="col-form-label">تقييم</label>
+                  <div class="d-flex align-items-center">
+                      <nz-rate [(ngModel)]="value" [nzTooltips]="tooltips"></nz-rate>
+                      <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : '' }}</span>
+
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2 my-3">
+              <div class="img-sec">
+                  <img class="w-100" src="/assets/modals/modal-img.png" alt="" srcset="">
+              </div>
+          </div>
+        </div>
+        <div *nzModalFooter>
+          <button nz-button nzType="default" (click)="handleCancel()">الغاء</button>
+          <button nz-button nzType="primary" (click)="updatePhase()" >تقييم</button>
+        </div>
+      </ng-container>
+    </nz-modal>
+<!-- <div class="modal fade stage-outcomes-modal" id="stageOutcomesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">تقييم مخرجات المرحلة</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-between">
+                <div class="col-lg-6 order-2 order-lg-1 my-3">
+                  <div class="form-content">
+                    <div class="mb-4">
+                        <label for="staticEmail" class="col-form-label">تقييم</label>
+                        <div class="d-flex align-items-center">
+                            <nz-rate [(ngModel)]="value" [nzTooltips]="tooltips"></nz-rate>
+                            <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : '' }}</span>
+
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="staticEmail" class="col-form-label">ملاحظات</label>
+                        <div class="">
+                            <textarea class="form-control" name="notes" [(ngModel)]="notes" id="exampleFormControlTextarea1" value="لا توجد ملاحظات" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-5 order-1 order-lg-2 my-3">
+                    <div class="img-sec">
+                        <img class="w-100" src="/assets/modals/modal-img.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="updatePhase()">حفظ</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+          </div>
+      </div>
+  </div>
+</div> -->

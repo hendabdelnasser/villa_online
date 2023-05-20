@@ -1,0 +1,105 @@
+<section class="contractor-projects">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">قائمة المشروعات</h3>
+            <h5 *ngIf="userType == 1">
+              ملف العميل
+            </h5>
+            <h5 *ngIf="userType == 2">ملف المقاول</h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="clients">
+                    <header>
+                        <h4>تصفية النتائج</h4>
+                    </header>
+                    <article>
+                        <div class="form-section">
+                            <form class="row g-3" [formGroup]="form" (ngSubmit)="searchProjects()">
+                                <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                    <input type="text" class="form-control" id="inputAddress2" placeholder="اسم العميل" formControlName="keyword">
+
+                                  </div>
+                                <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                    <select id="inputState" class="form-select" formControlName="projectType">
+                                        <option selected value="0">نوع المشروع</option>
+                                        <option *ngFor="let prj of projectType" value="{{prj.id}}">{{prj.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                    <select id="inputState" class="form-select" formControlName="regionId">
+                                        <option selected value="0">المنطقة</option>
+                                        <option *ngFor="let region of regions" value="{{region.id}}">{{region.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                  <nz-date-picker nzMode="year" formControlName="year" nzPlaceHolder="أختر السنة" ></nz-date-picker>
+                                </div>
+                                <div class="col-lg col-md-4 col-sm-6 mb-3">
+                                    <button>بحث</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="results">
+                            <h5>
+                                <span *ngIf="projects">{{projects.length}}</span> نتائج البحث
+                            </h5>
+                        </div>
+                        <div class="cards-content" *ngIf="isLoaded">
+                            <div class="row">
+                              <p *ngIf="projects.length == 0">لا توجد مشاريع</p>
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let project of projects">
+                                    <div class="project-card" (click)="projDetails(project.id)">
+                                        <!-- <img class="w-100" src="/assets/projects/project.png" alt="" srcset=""> -->
+                                        <div *ngIf="project.projectDocuments.length == 0">
+                                          <img class="w-100 img-height" src="/assets/projects/project.png" alt="" srcset="">
+                                        </div>
+                                        <div *ngIf="project.projectDocuments.length !== 0">
+                                          <img class="w-100 img-height" [src]="imgUrl+project.projectDocuments[0].url" alt="" srcset="">
+                                        </div>
+                                        <div class="details">
+                                            <h4>
+                                                {{project.name}}
+                                                <span class="mx-2">
+                                                    {{project.description}}
+                                                </span>
+                                            </h4>
+                                            <div class="prgress-sec">
+                                                <div class="progress">
+                                                    <div class="percentge-cls"  [ngStyle]="{'width':project.percent+'%'}" style="background:rgb(155, 7, 7)"></div>
+                                                </div>
+                                                <span class="mx-2">
+                                                    {{project.percent}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="mail">
+                                            <a href="http://" target="_blank" rel="noopener noreferrer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="view">
+                                            <a href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+                          <img width="128" height="128" src="/assets/icons/loading.gif" />
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

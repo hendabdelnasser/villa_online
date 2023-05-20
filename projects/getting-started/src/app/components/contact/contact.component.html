@@ -1,0 +1,79 @@
+<app-header></app-header>
+<section class="contact-page">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">تواصل معنا</h3>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="row justify-content-between">
+                    <div class="col-lg-7">
+                        <div class="form-content h-100">
+                            <header>
+                                <h4>بيانات الرسالة</h4>
+                            </header>
+                            <article>
+                              <form [formGroup]="form" (ngSubmit)="contactUs()">
+
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">الاسم</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="formGroupExampleInput" name="name" formControlName="Name">
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">البريد الالكتروني</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="inputEmail4" name="email"  formControlName="Mail" >
+                                        <div *ngIf="isSubmitted || (form.controls['Mail'].touched || form.controls['Mail'].touched)">
+                                          <small class="text-danger" *ngIf="form.controls['Mail'].hasError('required')">هذا الحقل مطلوب</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">الجوال</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="formGroupExampleInput" formControlName="Phone">
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">موضوع الرسالة</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="formGroupExampleInput"  formControlName="subject">
+
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">نص الرسالة</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" formControlName="MessageText"></textarea>
+                                        <div *ngIf="isSubmitted || (form.controls['MessageText'].touched || form.controls['MessageText'].touched)">
+                                          <small class="text-danger" *ngIf="form.controls['MessageText'].hasError('required')">هذا الحقل مطلوب</small>
+                                        </div>
+                                      </div>
+
+                                </div>
+                                <div class="mt-5 row action-btns">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button  type="submit" >ارسال<img *ngIf="buttonLoaded" width="30" src="/assets/icons/spinner.gif"></button>
+                                        <button routerLink="/home">الغاء</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="img-section h-100" *ngFor="let img of contactImg">
+                            <img class="w-100 h-100" [src]="imgUrl + img.url" alt="" srcset="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

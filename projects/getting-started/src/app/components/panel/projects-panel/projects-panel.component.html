@@ -1,0 +1,85 @@
+<section class="project-manager">
+  <div class="page-header">
+      <div class="container">
+          <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">لوحة التحكم</h3>
+
+      </div>
+  </div>
+  <div class="page-content">
+      <div class="container">
+          <div class="content">
+              <div class="tabs-section">
+                  <div class="row">
+                      <div class="col-lg-3 my-3">
+                          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link" id="v-pills-banner-tab" data-bs-toggle="pill" data-bs-target="#v-pills-banner" type="button" role="tab" aria-controls="v-pills-banner" aria-selected="true">    صور الواجهة الاساسية   </button>
+                              <button class="nav-link active" id="v-pills-services-tab" data-bs-toggle="pill" data-bs-target="#v-pills-services" type="button" role="tab" aria-controls="v-pills-services" aria-selected="true">الخدمات</button>
+                              <button class="nav-link" id="v-pills-prof-tab" data-bs-toggle="pill" data-bs-target="#v-pills-prof" type="button" role="tab" aria-controls="v-pills-prof" aria-selected="true">  الاحتراف و التميز  </button>
+                              <button class="nav-link" id="v-pills-howWork-tab" data-bs-toggle="pill" data-bs-target="#v-pills-howWork" type="button" role="tab" aria-controls="v-pills-howWork" aria-selected="true">كيف تعمل</button>
+                              <button class="nav-link" id="v-pills-partner-tab" data-bs-toggle="pill" data-bs-target="#v-pills-partner" type="button" role="tab" aria-controls="v-pills-partner" aria-selected="true"> شركائنا</button>
+                              <button class="nav-link" id="v-pills-about-tab" data-bs-toggle="pill" data-bs-target="#v-pills-about" type="button" role="tab" aria-controls="v-pills-about" aria-selected="true">   من نحن</button>
+
+                              <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">المشروعات</button>
+                              <button class="nav-link" id="v-pills-contact-tab" data-bs-toggle="pill" data-bs-target="#v-pills-contact" type="button" role="tab" aria-controls="v-pills-contact" aria-selected="true">   تواصل معنا   </button>
+
+                              <button class="nav-link" id="v-pills-sign-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sign" type="button" role="tab" aria-controls="v-pills-sign" aria-selected="true"> تسجيل الدخول  </button>
+                              <button class="nav-link" id="v-pills-privacy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-privacy" type="button" role="tab" aria-controls="v-pills-privacy" aria-selected="true">    سياسة الخصوصية </button>
+                              <button class="nav-link" id="v-pills-roles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-roles" type="button" role="tab" aria-controls="v-pills-roles" aria-selected="true">     الشروط و الاحكام </button>
+
+                            </div>
+                      </div>
+                      <div class="col-lg-9 my-3">
+                          <div class="tab-content" id="v-pills-tabContent">
+                            <!--Services-->
+                              <div class="tab-pane fade show active" id="v-pills-services" role="tabpanel" aria-labelledby="v-pills-services-tab">
+                                <app-panel-services></app-panel-services>
+                              </div>
+                              <!-- Project-->
+                              <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <app-projects></app-projects>
+                              </div>
+                               <!-- howWork -->
+                              <div class="tab-pane fade" id="v-pills-howWork" role="tabpanel" aria-labelledby="v-pills-howWork-tab">
+                                <app-how-work></app-how-work>
+                              </div>
+                              <!-- partner -->
+                              <div class="tab-pane fade" id="v-pills-partner" role="tabpanel" aria-labelledby="v-pills-partner-tab">
+                                <app-partners></app-partners>
+                              </div>
+                               <!-- About Us -->
+                               <div class="tab-pane fade" id="v-pills-sign" role="tabpanel" aria-labelledby="v-pills-sign-tab">
+                                <app-sign-in></app-sign-in>
+                              </div>
+                              <!-- Sign in -->
+                              <div class="tab-pane fade" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
+                                <app-about-us></app-about-us>
+                              </div>
+                               <!-- Profisional -->
+                               <div class="tab-pane fade" id="v-pills-prof" role="tabpanel" aria-labelledby="v-pills-prof-tab">
+                                <app-profisionality></app-profisionality>
+                              </div>
+                              <!-- contact us-->
+                              <div class="tab-pane fade" id="v-pills-contact" role="tabpanel" aria-labelledby="v-pills-contact-tab">
+                                <app-contact-us></app-contact-us>
+                              </div>
+                              <!-- banner -->
+                              <div class="tab-pane fade" id="v-pills-banner" role="tabpanel" aria-labelledby="v-pills-banner-tab">
+                                <app-home-banner></app-home-banner>
+                              </div>
+                               <!-- privacy -->
+                               <div class="tab-pane fade" id="v-pills-privacy" role="tabpanel" aria-labelledby="v-pills-privacy-tab">
+                                <app-privacy></app-privacy>
+                              </div>
+                              <!-- Roles -->
+                              <div class="tab-pane fade" id="v-pills-roles" role="tabpanel" aria-labelledby="v-pills-roles-tab">
+                                <app-roles-panel></app-roles-panel>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+

@@ -1,0 +1,168 @@
+<section class="project-details-page">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">مشروعاتنا</h3>
+            <h5>
+                تصفح جميع مشروعاتنا هنا
+            </h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="title">
+                    <h4>
+                        مشروع {{projectDetails.name}}
+                    </h4>
+                    <button routerLink="/projects">
+                        <span class="mx-2">عودة</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="proect-gallery">
+                    <swiper
+                        style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff"
+                        [loop]="true"
+                        [spaceBetween]="10"
+                        [navigation]="true"
+                        [thumbs]="{ swiper: thumbsSwiper }"
+                        class="mySwiper2"
+                    >
+                        <ng-template swiperSlide><img
+                            src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide><img
+                            src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide><img
+                            src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide><img
+                            src="/assets/projects/project-details.png" />
+                        </ng-template>
+                    </swiper>
+                    <swiper
+                        (swiper)="thumbsSwiper = $event"
+                        [loop]="true"
+                        [spaceBetween]="10"
+                        [slidesPerView]="4"
+                        [freeMode]="true"
+                        [watchSlidesProgress]="true"
+                        class="mySwiper"
+                    >
+                        <ng-template swiperSlide>
+                            <img src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide>
+                            <img src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide>
+                            <img src="/assets/projects/project-details.png" />
+                        </ng-template>
+                        <ng-template swiperSlide>
+                            <img src="/assets/projects/project-details.png" />
+                        </ng-template>
+                    </swiper>
+                </div>
+                <div class="project-details">
+                    <h3>
+                        توصيف المشروع
+                    </h3>
+                    <p>{{projectDetails.description}}</p>
+                </div>
+                <div class="project-info">
+                    <h3>
+                        بيانات المشروع
+                    </h3>
+                    <ul class="row list-unstyled">
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                الموقع
+                                <span class="mx-1">{{region.name}}</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                المقاول
+                                <span class="mx-1">{{constructors.name}}</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                بدأ في
+                                <span class="mx-1">{{projectPhase.dateStart}}</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                انتهى في
+                                <span class="mx-1">{{projectPhase.dateDone}}</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                الموقع
+                                <span class="mx-1">المدينة المنورة</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                المقاول
+                                <span class="mx-1">عبدالرحمن المطيري</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                بدأ في
+                                <span class="mx-1">20 شعبان 1444</span>
+                            </div>
+                        </li>
+                        <li class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="info-txt">
+                                انتهى في
+                                <span class="mx-1">25 ذي الحجة 1442</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tags">
+                    <h3>
+                        بيانات المشروع
+                    </h3>
+                    <div class="tags-words">
+                        <span>فيلا</span>
+                        <span>المدينة المنورة</span>
+                        <span>لاند سكيب</span>
+                    </div>
+                    <div class="publish">
+                        <h4>نشر</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="">
+                                    <img src="/assets/icons/whatsapp.png" alt="" srcset="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="/assets/icons/google+.png" alt="" srcset="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="/assets/icons/twitter.png" alt="" srcset="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="/assets/icons/facebook.png" alt="" srcset="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

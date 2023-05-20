@@ -1,0 +1,157 @@
+<section class="new-service">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
+              {{isUpdate ? 'خدمة حالية' : 'خدمة جديدة'}}
+              </h3>
+        </div>
+    </div>
+  <div class="container my-5">
+    <div *ngIf="isCreatedSuccessfully" class="alert alert-success my-5 w-50 text-center mx-auto" role="alert">
+      تم اضافة الخدمة بنجاح
+    </div>
+    <div *ngIf="isHasCreationError" class="alert alert-danger my-5 w-50 text-center mx-auto" role="alert">
+      خطأ فى معلومات اضافة الخدمة
+    </div>
+    <div *ngIf="isUpdatedSuccessfully" class="alert alert-success my-5 w-50 text-center mx-auto" role="alert">
+      تم تعديل الخدمة بنجاح
+    </div>
+    <div *ngIf="isHasUpdateError" class="alert alert-danger my-5 w-50 text-center mx-auto" role="alert">
+      خطأ فى معلومات تعديل الخدمة
+    </div>
+  </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="row justify-content-between">
+                    <div class="col-lg-7">
+                        <div *ngIf="isLoaded" class="form-content h-100">
+                            <header>
+                                <h4>بيانات الخدمة</h4>
+                            </header>
+                            <article>
+                                <div class="mb-4 row">
+                                    <label  class="col-sm-3 col-form-label">اسم الخدمة</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" [(ngModel)]="service['name']" class="form-control" id="formGroupExampleInput" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label  class="col-sm-3 col-form-label">وصف الخدمة</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" [(ngModel)]="service['description']" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="title">
+                                    <h4>مراحل الخدمة</h4>
+                                </div>
+                              <div class="wrapper mt-5" *ngFor="let phase of phases; let index= index">
+                                <div class="mb-4 row">
+                                  <label class="col-sm-3 col-form-label">رقم المرحلة: {{index + 1}}</label>
+                                  <div class="col-sm-9">
+                                    <button class="btn btn-danger"
+                                            [disabled]="checkIsPhasesHasLength()"
+                                            (click)="deleteCurrentPhase(+index)">
+                                      حذف المرحلة
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="phaseDefinition" class="col-sm-3 col-form-label">تعريف المرحلة</label>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-lg-4 mb-2">
+                                                <input type="text" [(ngModel)]="phase['title']" class="form-control mb-2" id="phaseDefinition" placeholder="">
+                                                <span>عنوان المرحلة</span>
+                                            </div>
+                                          <div class="col-lg-4 mb-2">
+                                            <input type="number" [(ngModel)]="phase['implementPeriod']" class="form-control mb-2" id="timeToComplete" placeholder="">
+                                            <span>زمن التنفيذ</span>
+                                          </div>
+                                            <div class="col-lg-4 mb-2">
+                                                <select class="form-select mb-2" [(ngModel)]="phase['implementPeriodType']">
+                                                    <option selected value="0">يوم</option>
+                                                  <option value="1">شهر</option>
+                                                  <option value="2">سنة</option>
+                                                </select>
+                                                <span>المعدل الزمني</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label  class="col-sm-3 col-form-label">اسم المقاول</label>
+                                    <div class="col-sm-9">
+                                        <select id="inputState" class="form-select" [(ngModel)]="phase['userId']">
+                                            <option *ngFor="let user of users" value="{{user['id']}}">{{user['name']}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                  <label  class="col-sm-3 col-form-label">مدخلات العميل (بيانات)</label>
+                                  <div class="col-sm-9">
+                                      <div>
+                                          <nz-select nzMode="tags" nzPlaceHolder="" [(ngModel)]="phase['data']">
+                                              <nz-option *ngFor="let option of data" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+                                          </nz-select>
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="mb-4 row">
+                                    <label  class="col-sm-3 col-form-label"> ملفات و مرفقات العميل</label>
+                                    <div class="col-sm-9">
+                                        <div>
+                                            <nz-select nzMode="tags" nzPlaceHolder="" [(ngModel)]="phase['inputs']">
+                                                <nz-option *ngFor="let option of inputs" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+                                            </nz-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label  class="col-sm-3 col-form-label">مخرجات</label>
+                                    <div class="col-sm-9">
+                                        <div>
+                                            <nz-select nzMode="tags" nzPlaceHolder="" [(ngModel)]="phase['outputs']">
+                                                <nz-option *ngFor="let option of outputs" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+                                            </nz-select>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <div class="mb-4 row">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9" (click)="addNewPhase()">
+                                        <button class="add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                            </svg>
+                                            إضافة مرحلة
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-5 row action-btns">
+                                    <label  class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button *ngIf="!isUpdate" (click)="addNewService()">أنشئ الخدمة<img *ngIf="buttonLoaded" width="30" src="/assets/icons/spinner.gif"></button>
+                                        <button *ngIf="isUpdate" (click)="updateService()">تعديل الخدمة<img *ngIf="buttonLoaded" width="30" src="/assets/icons/spinner.gif"></button>
+                                        <button (click)="clearForm()">الغاء</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+                          <img width="128" height="128" src="/assets/icons/loading.gif" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="img-section h-100">
+                            <img class="w-100" src="/assets/register/new-services.png" alt="" srcset="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

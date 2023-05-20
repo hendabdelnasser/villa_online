@@ -1,0 +1,21 @@
+<app-header></app-header>
+<section class="about-page">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">إعرف عنا</h3>
+            <h5>الشروط و الاحكام</h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content row">
+                <div class="txt-info mb-5 col-10" *ngFor="let term of projects">
+                    <h3>{{term.titel}}</h3>
+                    <p style="white-space: pre-wrap">
+                      {{term.data}}
+                      </p>
+                </div>
+           </div>
+        </div>
+    </div>
+</section>

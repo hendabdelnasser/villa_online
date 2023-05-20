@@ -1,0 +1,57 @@
+<div class="notes-tab">
+  <header>
+      <h4>{{projectDetails.name}}</h4>
+      <button routerLink="/contractor-projects">
+          <span class="mx-2">عودة</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+      </button>
+  </header>
+  <article>
+      <div class="chat-section">
+          <div *ngIf="allNotes.length == 0">
+              <p>لا توجد ملاحظات لهذا المشروع </p>
+          </div>
+          <ng-container *ngIf="allNotes.length !== 0">
+              <ng-container *ngFor="let note of allNotes">
+                  <div class="sender-message" *ngIf="userId == note.userId">
+                      <div class="message-content">
+                          <img src="/assets/notes/admin.jpeg" alt="admin" srcset="" *ngIf="note.userTypeId === 0">
+                          <img src="/assets/notes/customer.jpeg" alt="customer" srcset=""  *ngIf="note.userTypeId === 1">
+                          <img src="/assets/notes/constructor.jpeg" alt="constructor" srcset="" *ngIf="note.userTypeId === 2">
+                          <span class="mx-3">{{note.noteBody}}</span>
+                      </div>
+                      <time>{{note.creationTime|date:'dd/MM hh:mm'}}</time>
+                  </div>
+                  <div class="reciever-message" *ngIf="userId !== note.userId">
+                      <time>{{note.creationTime|date:'dd/MM hh:mm'}}</time>
+                      <div class="message-content">
+                          <span class="mx-3">{{note.noteBody}}</span>
+                          <img src="/assets/notes/admin.jpeg" alt="admin" srcset="" *ngIf="note.userTypeId === 0">
+                          <img src="/assets/notes/customer.jpeg" alt="customer" srcset=""  *ngIf="note.userTypeId === 1">
+                          <img src="/assets/notes/constructor.jpeg" alt="constructor" srcset="" *ngIf="note.userTypeId === 2">
+                          </div>
+                  </div>
+              </ng-container>
+          </ng-container>
+          <div class="chat-action border-top pt-4">
+              <div class="row">
+                  <div class="col-lg-4 order-2 order-lg-1 my-2">
+                      <div class="btns">
+                          <button class="send" [disabled]="projectPhase.id ==0" (click)="sendChat()">
+                              <img src="/assets/icons/send.png" alt="" srcset="">
+                              <span>ارسال</span>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col-lg-8  order-1 order-lg-2 my-2">
+                      <div class="text">
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="chatNotes" name="chatNotes"></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </article>
+</div>

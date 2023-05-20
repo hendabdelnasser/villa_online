@@ -1,0 +1,116 @@
+<div class="project-invoices">
+  <header>
+      <h4>فواتير المشروعات</h4>
+      <button nz-button [nzType]="'primary'" (click)="showModal()"><span>إضافة فاتورة</span></button>
+    </header>
+  <article *ngIf="isLoaded">
+      <div class="table-responsive">
+          <table class="table table-borderless">
+              <thead>
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">اسم المشروع</th>
+                      <th scope="col"> العميل</th>
+                      <th scope="col">القيمة</th>
+                      <th scope="col">التاريخ</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="invoices.length === 0">لا توجد فواتير </tr>
+                  <tr *ngFor="let inv of invoices;">
+                      <th scope="row">{{inv.invoiceNo}}</th>
+                      <th>{{inv.projectName}}</th>
+                      <td>{{inv.customerName}} </td>
+                      <td>{{inv.price}} ريال</td>
+                      <td>{{inv.date | date:'dd-MM-YYYY'}}</td>
+                      <td>
+                          <button *ngIf="inv.status == 0" (click)="deleteInvoice(inv.id)">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                              </svg>
+                          </button>
+                      </td>
+                      <td>
+                          <div [ngClass]="inv.status==0?'not-payed':'payed'">
+                              <span *ngIf="inv.status ==0">
+                                <button type="button" class="btn btn-primary">
+                                  لم تسدد
+                                </button>
+                              </span>
+                              <span *ngIf="inv.status ==1">
+                                  تم السداد
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                  </svg>
+                              </span>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- <tr>
+                      <th scope="row">#65554</th>
+                      <td>عبدالمنعم الشنقيطي</td>
+                      <td>فيلا خاصة</td>
+                      <td>20,000 ريال</td>
+                      <td>12-10-1443</td>
+                      <td>
+                          <button>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                              </svg>
+                          </button>
+                      </td>
+                      <td>
+                          <div class="payed">
+                              <span>
+                                  تم السداد
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                  </svg>
+                              </span>
+                          </div>
+                      </td>
+                  </tr> -->
+
+              </tbody>
+          </table>
+      </div>
+  </article>
+  <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+    <img width="128" height="128" src="/assets/icons/loading.gif" />
+  </div>
+</div>
+<!-- Add Invoice -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="إضافة فاتورة">
+  <ng-container *nzModalContent>
+      <div class="mb-4 row">
+          <label for="staticEmail" class="col-sm-3 col-form-label">المشروع</label>
+          <div class="col-sm-9">
+            <select id="inputState" class="form-select mb-2"
+            [(ngModel)]="invoice.projectId" (change)="getCustomer($any($event).target)">
+            <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+        </select>
+          </div>
+      </div>
+      <div class="mb-4 row">
+          <label for="price" class="col-sm-3 col-form-label">القيمة المطلوبة</label>
+          <div class="col-sm-9">
+              <input type="number" class="form-control" id="price" placeholder="" [(ngModel)]="invoice.price">
+          </div>
+      </div>
+      <div class="mb-4 row">
+          <label for="date" class="col-sm-3 col-form-label">تاريخ الاستحقاق</label>
+          <div class="col-sm-9">
+              <input type="date" class="form-control" id="date" name='date' [(ngModel)]="invoice.date">
+          </div>
+      </div>
+  </ng-container>
+  <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">إلغاء</button>
+      <button nz-button nzType="primary"  (click)="AddInvoice()">حفظ</button>
+    </div>
+</nz-modal>

@@ -1,0 +1,112 @@
+.notes-tab {
+  button:disabled{
+    background-color: #a09f9f;
+    color:#fff;
+    cursor: none;
+  }
+  header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-bottom: solid 1px #e0e0e0;
+      padding-bottom: 15px;
+      h4 {
+          color: #343434;
+          margin: 5px 0;
+      }
+      button {
+          all: unset;
+          cursor: pointer;
+          margin: 5px 0;
+          svg {
+              color: #EA4335;
+          }
+      }
+  }
+  article {
+      .chat-section {
+          .sender-message {
+              display: flex;
+              align-items: center;
+              margin: 15px 0;
+              .message-content {
+                  display: flex;
+                  img {
+                      width: 60px;
+                      height: 60px;
+                      border-radius: 50%;
+                  }
+                  span {
+                      background-color: #f7f7f7;
+                      color: #6f6c6c;
+                      display: inline-block;
+                      padding: 10px;
+                      border-radius: 25px 5px 0 25px;
+                  }
+              }
+              time {
+                  color: rgba(91, 91, 91, 0.5);
+                  white-space: nowrap;
+              }
+          }
+          .reciever-message {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              margin: 15px 0;
+              .message-content {
+                  display: flex;
+                  align-items: center;
+                  img {
+                      width: 60px;
+                      height: 60px;
+                      border-radius: 50%;
+                  }
+                  span {
+                      background-color: #ebf3fe;
+                      color: #6f6c6c;
+                      display: inline-block;
+                      padding: 10px;
+                      border-radius: 5px 25px 25px 0px;
+                  }
+              }
+              time {
+                  color: rgba(91, 91, 91, 0.5);
+                  white-space: nowrap;
+              }
+          }
+          .chat-action {
+              .btns {
+                  button {
+                      all: unset;
+                      cursor: pointer;
+                      margin: 7px;
+                      &.send {
+                          box-sizing: border-box;
+                          margin-top: 20px;
+                          background: #1e3555;
+                          color: #fff;
+                          border: 1px solid;
+                          padding: 8px 10px;
+                          min-width: 150px;
+                          border-radius: 25px;
+                          outline: none;
+                          transition: all 0.3s;
+                          text-align: center;
+                          img {
+                              margin-left: 5px;
+                          }
+                      }
+                      img {
+                          width: 20px;
+                      }
+                  }
+              }
+          }
+          textarea {
+              background-color: #eee;
+          }
+      }
+  }
+}

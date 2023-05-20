@@ -1,0 +1,106 @@
+<app-navbar></app-navbar>
+<section class="contact-page">
+
+        <div class="page-header" [ngStyle]="{'backgroundImage': 'url(' + imgUrl + signIn[0].url + ')'}">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+             style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">تسجيل دخول</h3>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-6">
+                        <div class="form-content h-100">
+                            <header>
+                                <h4>تسجيل الدخول</h4>
+                                <p>
+                                    مرحبًا بعودتك إلى المنصة. سجّل دخولك الآن
+                                </p>
+                            </header>
+                            <form [formGroup]="form" (ngSubmit)="login()">
+                                <div class="mb-4">
+                                    <label for="userNameOrEmailAddress" class="col-form-label">اسم المستخدم</label>
+                                    <div class="">
+                                        <input formControlName="userNameOrEmailAddress" type="text" class="form-control" id="userNameOrEmailAddress" placeholder="">
+                                    </div>
+                                    <div *ngIf="isSubmitted || (form.controls['userNameOrEmailAddress'].touched || form.controls['userNameOrEmailAddress'].touched)">
+                                      <small class="text-danger" *ngIf="form.controls['userNameOrEmailAddress'].hasError('required')">هذا الحقل مطلوب</small>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="password" class="col-form-label">كلمة المرور</label>
+                                    <div class="">
+                                        <input formControlName="password" type="password" class="form-control" id="password" placeholder="">
+                                    </div>
+                                    <div *ngIf="isSubmitted || (form.controls['password'].touched || form.controls['password'].touched)">
+                                      <small class="text-danger" *ngIf="form.controls['password'].hasError('required')">هذا الحقل مطلوب</small>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        تذكرني
+                                    </label>
+                                </div>
+                                <div class="mt-4 action-btns">
+                                    <div class="col-12">
+                                        <button class="btn btn-primary">تسجيل الدخول</button>
+                                    </div>
+                                </div>
+                                <div class="forget-password">
+                                    <p>
+                                        هل نسيت كلمة المرور؟
+                                        <a routerLink="/forget-password"> اضغط هنا</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="register-details">
+                            <div class="txt">
+                                <h4>عن فيلا أو لاين</h4>
+                                <p>
+                                  منصة فيلا أونلاين أول منصة أونلاين  في المملكة العربية السعودية لبناء الفلل الخاصة والمشاريع الهندسية باستخدام التكنولوجيا الرقمية ( Digitising ) لخد مة العملاء عبر المنصة وتوفير عامل الوقت والجهد عليهم عبر فريق متكامل من المهندسين والمشرفين والمنفذين والموردين لجميع مواد البناء للعظم والتشطيب ، بإدارة إحترافية بأسعار منافسة ، وتبدأ من مرحلة التصميم حتى نهاية المشروع ، والمتابعة لكل تفاصيل المشروع عن طريق المنصة بدْا من وجود عقود المشروع والتحديث بالفيديو والصور لكل تطورات المشروع.
+                                </p>
+                            </div>
+                            <div class="txt">
+                                <h4>كيف تعمل منصة أنلاين</h4>
+                                <p>
+                                  1-	تبدأ من الاجتماع بالعميل
+                                  </p>
+                                <p>
+                                  2-	مرحلة التصميم
+                                </p>
+                                <p>
+                                  3-	مرحلة تنفيذ العظم
+                                                                   </p>
+                                <p>
+                                  4-	مرحلة تنفيذ التشطيب
+                                                                 </p>
+                                <p>
+                                5-	مرحلة تسليم المشروع
+                               </p>
+
+                            </div>
+                            <!-- <div class="txt">
+                                <h4>مزايا حساب فيلا اونلاين</h4>
+                                <div class="download-app">
+                                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/icons/appleStore.svg" alt="" srcset="">
+                                    </a>
+                                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/icons/playStore.svg" alt="" srcset="">
+                                    </a>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

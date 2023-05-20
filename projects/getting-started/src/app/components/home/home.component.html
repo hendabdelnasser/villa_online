@@ -1,0 +1,154 @@
+<app-header></app-header>
+<div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+  <img width="128" height="128" src="/assets/icons/loading.gif" />
+</div>
+<section class="home-page" *ngIf="isLoaded">
+  <div class="content w-100">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let ban of banners;let i = index" [ngClass]="i === 1 ? 'active':''">
+          <img [src]="imgUrl + ban.url" class="d-block w-100" [alt]="i+'img'">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" #carousel1 data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </div>
+  <section class="about-section">
+    <div class="container">
+      <header>
+        <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp mb-5"
+          style="color:#233453;visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
+          كيف تعمل
+          فيلا
+          <span style="color: #D85140;font-size: 4rem;">.</span> أونلاين
+          <div class="line-2"></div>
+
+        </h3>
+      </header>
+
+      <article class="how-work-section" *ngFor="let how of howWork;let i = index;i+1">
+        <div *ngIf="i%2!=0 ;else elseb" class="row m-2" >
+          <div class="txt col-sm-8 col-md-8 col-lg-8 order-last">
+            <h4 class="t">{{how.title}}</h4>
+            <div class="line"></div>
+            <p class="d">{{how.data}}</p>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4 order-first f">
+            <img width="100%" height="100%" *ngIf="how.url" [src]="imgUrl + how.url" alt="">
+          </div>
+        </div>
+        <ng-template #elseb class="m-5" >
+          <div class="row m-2">
+            <div class="txt col-sm-8 col-md-8 col-lg-8 order-first">
+              <h4 class="t">{{how.title}}</h4>
+              <div class="line"></div>
+              <p class="d">{{how.data}}</p>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 order-last">
+              <img width="100%" height="100%" *ngIf="how.url" [src]="imgUrl + how.url" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <div class="line-3"></div>
+      </article>
+
+    </div>
+  </section>
+  <section class="projects-section" style="background-color:#fff">
+    <div class="container">
+      <header>
+        <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+          style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">الإحتراف
+          والتميز</h3>
+      </header>
+      <article>
+        <div class="txt">
+          <p *ngFor="let data of profissional">
+            {{data.data}}
+          </p>
+        </div>
+        <div class="slider-section">
+          <div id="tamayoz" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let ban of profissionalPic;let i = index"
+                [ngClass]="i === 1 ? 'active':''">
+                <ng-container *ngFor="let img of ban.professionalismPanalPics">
+                  <img [src]="imgUrl + img.url" class="d-block w-100" [alt]="i+'img'">
+                </ng-container>
+
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#tamayoz" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" #carousel3 data-bs-target="#tamayoz"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="partner-section py-5" style="background-color:#fff">
+    <div class="container">
+      <header>
+        <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+          style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">شركاءنا
+        </h3>
+      </header>
+      <article class="row">
+        <div class="container">
+          <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-3 col-3" *ngFor="let part of partners.slice(0,4)">
+                    <img width="200px" [src]="imgUrl + part.url" alt="1 slide">
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" *ngFor="let i of numbers">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-3 col-3" *ngFor="let part of partners.slice((i+1)*4,(i+2)*4)">
+                    <img width="200px" [src]="imgUrl + part.url" alt="4 slide">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev d-none" type="button" data-bs-target="#multi_item"
+              data-bs-slide="prev">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+              </svg>
+            </button>
+            <button class="carousel-control-next d-none" #carousel2 type="button" data-bs-target="#multi_item"
+              data-bs-slide="next">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</section>

@@ -1,0 +1,323 @@
+<section class="new-project">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+                style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
+                مشروع جديد</h3>
+        </div>
+    </div>
+    <div class="container my-5" style="position: absolute">
+        <!-- <div *ngIf="isCreatedSuccessfully" class="alert alert-success my-5 w-50 text-center mx-auto" role="alert">
+          تم اضافة المستخدم بنجاح
+        </div>
+        <div *ngIf="isHasCreationError" class="alert alert-danger my-5 w-50 text-center mx-auto" role="alert">
+          خطأ فى معلومات اضافة المستخدم
+        </div> -->
+
+      </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content">
+                <div class="row justify-content-between">
+                    <div class="col-lg-7">
+                        <div class="form-content h-100">
+                            <header>
+                                <h4>بيانات المشروع</h4>
+                            </header>
+                            <article *ngIf="isLoaded">
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">اختر العميل</label>
+                                    <div class="col-sm-9">
+                                        <select id="inputState" class="form-select" [(ngModel)]="newProject.userId"
+                                        (change)="selectClient($any($event).target.value)" name="client">
+                                            <option *ngFor="let c of clients;let i = index" [value]="c.id">{{c.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">اسم المشروع</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control mb-2" id="formGroupExampleInput"
+                                            placeholder="" [(ngModel)]="newProject.name" name="projectName"
+                                            #projectName="ngModel">
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">نوع المشروع</label>
+                                    <div class="col-sm-9">
+                                        <select id="inputState" class="form-select" [(ngModel)]="newProject.projectTypeId"
+                                            (change)="selectProjectType($any($event).target.value)" name="service">
+                                            <option *ngFor="let pt of allProjectType;let i = index" [value]="pt.id">{{pt.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="region" class="col-sm-3 col-form-label">المنطقة</label>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col mb-2">
+                                                <!-- <select name="region" class="form-control" id="region">
+                                        <option *ngFor="let region of regions" value="{{region.value}}">{{region.label}}</option>
+                                      </select> -->
+                                                <select id="inputState" class="form-select"
+                                                    [(ngModel)]="newProject.regionId"
+                                                    (change)="selectRegion($any($event).target.value)" name="region">
+                                                    <option *ngFor="let r of regions;let i = index" [value]="r.id">
+                                                        {{r.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">وصف المشروع</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                            [(ngModel)]="newProject.description" name="projectDescription"
+                                            #projectDescription="ngModel"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">ملفات و مرفقات</label>
+                                    <div class="col-sm-9">
+                                        <div class="upload-files">
+                                            <div class="add-file-btn">
+                                                <button>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                        fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                                    </svg>
+                                                    <input id="file" #file type="file" class="form-control" multiple=""
+                                                        (change)="uploadFile(file.files)">
+                                                </button>
+                                               </div>
+                                            <div class="img-ulpoad add-file-btn">
+                                                <div class="form-group d-flex">
+                                                    <div *ngFor='let url of images;let i=index' class="position-relative">
+                                                        <img [src]="url">
+                                                        <div class="delete-btn">
+                                                            <button (click)="deleteImg(i)">
+                                                                <img src="/assets/icons/delete-icon.png" alt="" srcset="">
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <span>* يمكنك رفع ملفات و مرفقات المشروع بصيغ , jpg, bmp, png
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">مدة التنفيذ</label>
+                                    <div class="col-sm-5 mb-2">
+                                        <input type="number" class="form-control mb-2" id="timeToComplete"
+                                            placeholder="" [(ngModel)]="newProject.implementPeriod" name="projectPeriod"
+                                            #projectPeriod="ngModel">
+                                        <span>زمن التنفيذ</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select id="inputState" class="form-select mb-2"
+                                            [(ngModel)]="newProject.implementPeriodType">
+                                            <option selected value="0">يوم</option>
+                                            <option value="1">شهر</option>
+                                            <option value="2">سنة</option>
+                                        </select>
+                                        <span>المعدل الزمني</span>
+
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="startDate" class="col-sm-3 col-form-label">تاريخ بدء المشروع</label>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-2">
+                                                <input type="date" class="form-control mb-2" id="startDate"
+                                                    placeholder="" [(ngModel)]="newProject.date" name="date"
+                                                    #date="ngModel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="title">
+                                    <h4>الخدمات المقدمة</h4>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">نوع الخدمة</label>
+                                    <div class="col-sm-9">
+                                        <select id="inputState" class="form-select" [(ngModel)]="newService.serviceId"
+                                            (change)="selectServices($any($event).target)" name="service">
+                                            <option value="0">أختر الخدمة</option>
+                                            <option *ngFor="let s of services;let i = index" [value]="s.id">{{s.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button class="add-stage"  (click)="addPhase() ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                            </svg>
+                                            إضافة مرحلة
+                                        </button>
+                                        <div class="mt-2"  *ngIf="addPhaseBtn" >
+                                            <div class="mb-4 row">
+                                                <label for="staticEmail" class="col-sm-3 col-form-label">مراحل الخدمة</label>
+                                                <div class="col-sm-9">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 mb-2">
+                                                            <select id="inputState" class="form-select"
+                                                                [(ngModel)]="newPhase.phaseId"
+                                                                (change)="selectPhase($any($event).target)" name="phase">
+                                                                <option value="0" selected>أختر المرحلة</option>
+                                                                <option *ngFor="let p of allPhases;let i = index" [value]="p.id">
+                                                                    {{p.title}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <label for="staticEmail" class="col-sm-3 col-form-label">اسم المقاول</label>
+                                                <div class="col-sm-9">
+                                                    <select id="inputState" class="form-select" [(ngModel)]="newPhase.userId"
+                                                      name="region">
+                                                        <option *ngFor="let c of constructors;let i = index" [value]="c.id">
+                                                            {{c.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <label for="staticEmail" class="col-sm-3 col-form-label">مدة التنفيذ</label>
+                                                <div class="col-sm-5 mb-2">
+                                                    <input type="number" class="form-control mb-2" id="timeToComplete"
+                                                        placeholder="" [(ngModel)]="newPhase.implementPeriod" name="projectPeriod"
+                                                        #projectPeriod="ngModel">
+                                                    <span>زمن التنفيذ</span>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <select id="inputState" class="form-select mb-2"
+                                                        [(ngModel)]="newPhase.implementPeriodType">
+                                                        <option selected value="0">يوم</option>
+                                                        <option value="1">شهر</option>
+                                                        <option value="2">سنة</option>
+                                                    </select>
+                                                    <span>المعدل الزمني</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <label for="startDate" class="col-sm-3 col-form-label">تاريخ البدء</label>
+                                                <div class="col-sm-9">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 mb-2">
+                                                            <input type="date" class="form-control mb-2" id="startDate"
+                                                                placeholder="" [(ngModel)]="newPhase.dateStart" name="dateStart"
+                                                                >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                              <label for="startDate" class="col-sm-3 col-form-label">وزن المرحلة</label>
+                                              <div class="col-sm-9">
+                                                  <div class="row">
+                                                      <div class="col-lg-12 mb-2">
+                                                          <input type="number" min="0" max="100" class="form-control mb-2" id="doneWight"
+                                                              placeholder="" [(ngModel)]="newPhase.doneWight" name="doneWight"
+                                                              #dateStart="ngModel">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                            <button class="add action-btns " (click)="addNewPhase(newPhase,newService)" [disabled]="newPhase.phaseId == 0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                    <path
+                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                </svg>
+                                                إضافة
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- <div class="mb-4 row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                                    <div  *ngFor="let s of addArrServices"class="card col-md-3" >
+                                        <div class="card-body">
+                                          <b class="card-title">الخدمة : {{s.name}} </b>
+                                        </div>
+                                        <div>المراحل :</div>
+                                        <ul  *ngFor="let p of s.projectPhase" class="list-group list-group-flush">
+                                          <li class="list-group-item"> {{p.title}} </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="col-sm-9 border-top">
+
+
+
+                                </div>
+                                </div> -->
+                                <div class="mt-5 row action-btns">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button (click)="onSave() ">أنشئ المشروع<img *ngIf="buttonLoaded" width="30" src="/assets/icons/spinner.gif"></button>
+                                        <button routerLink="/project-manager">الغاء</button>
+                                    </div>
+                                </div>
+                            </article>
+                            <div *ngIf="!isLoaded" class="form-content h-100 d-flex justify-content-center">
+                              <img width="128" height="128" src="/assets/icons/loading.gif" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="img-section">
+                            <img class="w-100" src="/assets/register/new-project.png" alt="" srcset="">
+                        </div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"></label>
+                        <div  *ngFor="let s of addArrServices" class="card col-md-9" >
+                            <div class="card-body">
+                              <b class="card-title">الخدمة : {{s.name}} </b>
+                            </div>
+                            <div>المراحل :</div>
+                            <ul  *ngFor="let p of s.projectPhase;let index = index" class="phase-list list-group list-group-flush">
+                              <li class="list-group-item">
+                                {{p.title}} {{p.doneWight}}%
+                                <span>المقاول : {{getUserName(p.userId)}}</span>
+                                <button class="del-phase" (click)="deletePhases(index,s.serviceId)">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                  </svg>
+                              </button>
+                              </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="col-sm-9 border-top"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

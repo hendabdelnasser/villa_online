@@ -1,0 +1,36 @@
+<app-header></app-header>
+<section class="services-section">
+  <div class="container">
+    <header>
+      <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp"
+        style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
+        خدماتنا</h3>
+    </header>
+    <article>
+      <div class="services-cards">
+        <div class="row">
+          <div class="col-12">
+            <div class="services-details-card">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let serv of services">
+                  <div class="card">
+                    <img [src]="imgUrl + serv.url" class="card-img-top" alt="..." height="180px">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <span>{{serv.title}}</span>
+                        <img src="../../../assets/icons/services-icon.png" alt="" srcset="">
+                      </h5>
+                      <p class="card-text">
+                        {{serv.data}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

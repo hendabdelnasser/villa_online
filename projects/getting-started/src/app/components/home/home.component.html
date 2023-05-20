@@ -23,7 +23,7 @@
     </div>
 
   </div>
-  <section class="about-section">
+  <section class="about-section" style="background-color: #fff;">
     <div class="container">
       <header>
         <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp mb-5"
@@ -36,30 +36,30 @@
         </h3>
       </header>
 
-      <article class="how-work-section" *ngFor="let how of howWork;let i = index;i+1">
+      <article class="how-work-section" *ngFor="let how of howWork;let i = index;i+1" style="padding-bottom: 50px;">
         <div *ngIf="i%2!=0 ;else elseb" class="row m-2" >
-          <div class="txt col-sm-8 col-md-8 col-lg-8 order-last">
+          <div class="txt col-sm-8 col-md-8 col-lg-8 order-first">
             <h4 class="t">{{how.title}}</h4>
             <div class="line"></div>
             <p class="d">{{how.data}}</p>
           </div>
-          <div class="col-sm-4 col-md-4 col-lg-4 order-first f">
+          <div class="col-sm-4 col-md-4 col-lg-4 order-last f">
             <img width="100%" height="100%" *ngIf="how.url" [src]="imgUrl + how.url" alt="">
           </div>
         </div>
         <ng-template #elseb class="m-5" >
           <div class="row m-2">
-            <div class="txt col-sm-8 col-md-8 col-lg-8 order-first">
+            <div class="txt col-sm-8 col-md-8 col-lg-8 order-last">
               <h4 class="t">{{how.title}}</h4>
               <div class="line"></div>
               <p class="d">{{how.data}}</p>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 order-last">
+            <div class="col-sm-4 col-md-4 col-lg-4 order-first">
               <img width="100%" height="100%" *ngIf="how.url" [src]="imgUrl + how.url" alt="">
             </div>
           </div>
         </ng-template>
-        <div class="line-3"></div>
+
       </article>
 
     </div>
@@ -78,7 +78,7 @@
           </p>
         </div>
         <div class="slider-section">
-          <div id="tamayoz" class="carousel slide" data-bs-ride="carousel">
+          <!-- <div id="tamayoz" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let ban of profissionalPic;let i = index"
                 [ngClass]="i === 1 ? 'active':''">
@@ -97,7 +97,7 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
-          </div>
+          </div> -->
         </div>
       </article>
     </div>

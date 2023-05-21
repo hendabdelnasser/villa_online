@@ -46,6 +46,7 @@
                     max-width: 900px;
                 }
             }
+            
             .slider-section {
                 margin-top: 2rem;
                 .carousel-caption {
@@ -159,29 +160,35 @@
             margin-bottom: 30px;
         }
       }
-
+     
       .carousel-control-next, .carousel-control-prev{
         color:red
       }
     }
     .how-work-section h4{
+    
       color:#233453;
       font-size: 30px;
       font-family: Tahoma;
       font-weight: bold;
+      @media (max-width: 574px){
+        margin-top: 50px;
+      }
     }
     .how-work-section p{
-      color:#233453;
+      color:#363333;
       font-size: 30px;
       line-height: 35px;
       font-family: Tahoma;
+      
     }
     .how-work-section .line{
       width: 220px;
       height: 3px;
-      background-color: #233453;
+      background-color: #2b2e2b;
       border-radius: 10px;
       margin: 15px 0 20px 0;
+      
     }
     .how-work-section .line-3{
       width: 100%;
@@ -192,13 +199,15 @@
       margin: 15px 0 20px 0;
     }
     .how-work-section img{
+    
       box-shadow: 5px 5px 10px grey;
       -moz-box-shadow: 5px 5px 10px grey;
       -webkit-box-shadow: 5px 5px 10px grey;
       -khtml-box-shadow: 5px 5px 10px grey;
       margin-bottom: 25px;
-
+  
     }
+   
     .about-section .line-2{
       width: 400px;
       height: 5px;
@@ -214,6 +223,7 @@
         border-radius: 10px;
         margin: 15px 0;
       }
+   
       .how-work-section .t{
         font-size: 20px;
       }
@@ -222,10 +232,10 @@
       }
       .how-work-section .line{
         width: 150px;
-        height: 1px;
-        background-color: #233453;
+        height: 2px;
+        background-color: #D85140;
         border-radius: 10px;
-        margin: 15px 0 20px 0;
+        margin: 15px 0;
       }
       .how-work-section .line-3{
         width: 360px;
@@ -238,13 +248,17 @@
       .how-work-section .f{
         display: flex;
         order: 6!important;
-
+       
       }
+      
       .carousel-item .row img{
-        width: 100px;
+      
+        width: 50px;
       }
 
     }
-}
+    
+   
+  }
 
 

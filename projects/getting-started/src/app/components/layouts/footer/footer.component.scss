@@ -42,17 +42,20 @@ footer {
         }
     }
     .social-media {
+     
         h3 {
             // color: #313131;
             font-size: 18px;
             color:#fff;
 
         }
+
         ul {
             display: flex;
             align-items: center;
             li {
-                margin-left: 5%;
+               
+                margin-right: 150px;
                 a {
                     svg {
                         color: #E73845;
@@ -72,6 +75,7 @@ footer {
             font-size: 14px;
             border-radius: 0;
         }
+        
         button {
             margin-top: 20px;
             background: #E73845;
@@ -96,4 +100,39 @@ footer {
        justify-content:center;
     }
   }
+
+
+  .wow.fadeInUp{
+    display: none;
+  width: 50px;
+  margin-right: 3rem;
+  margin-top: 2.5rem;
+  }
+
+  .details {
+    ul {
+        margin-left: 5px;
+        li {
+            display: flex;
+          color:#fff;
+            margin-bottom: 3px;
+            font-size: 25px;
+            a {
+             font-size: 10px;
+            }
+        }
+    }
+}
+.foter{
+    margin-right: 0px;
+}
+div.address{
+    margin-right: 50px;
+  }
+div.details-1{
+    margin-left: 0px;
+}
+div.details-2{
+    margin-left: 0px;
+}
 }

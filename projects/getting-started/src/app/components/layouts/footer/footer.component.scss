@@ -102,11 +102,17 @@ footer {
   }
 
 
-  .wow.fadeInUp{
+.col .wow.fadeInUp{
+    visibility: hidden; 
+    animation-duration: 2s; 
+    animation-delay: 0.5s; 
+    animation-name: fadeInUp; 
+    display: block;
+    width:100px;
+    @media (max-width:600px) {
     display: none;
-  width: 50px;
-  margin-right: 3rem;
-  margin-top: 2.5rem;
+        
+    }
   }
 
   .details {

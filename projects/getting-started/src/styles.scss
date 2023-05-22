@@ -8,6 +8,15 @@
 .swiper {
     width: 100%;
     height: 100%;
+    
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.4s
 }
 body .cdk-overlay-container{
     z-index:2000 !important;
@@ -294,3 +303,6 @@ a {
     }
   }
   }
+
+
+  

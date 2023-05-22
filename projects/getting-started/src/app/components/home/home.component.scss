@@ -273,7 +273,7 @@
     margin-top: -94rem;
     cursor: pointer;
     @media (max-width: 766px) {
-      bottom: 115px;
+      bottom: 80px;
     }
     @media (max-width: 600px) {
       bottom: 165px;
@@ -320,12 +320,13 @@
 .wrapper {
     position: absolute;
     right: 20px;
-    bottom: -10rem;
+    bottom: -3rem;
     width: 350px;
     height: 400px;
     background-color: #ccc6c631;
     border-radius: 25px;
     border: solid;
+    margin-right: 75px;
     border-color: #24272D;
     opacity: 0;
     transition: all 0.4s;
@@ -350,12 +351,35 @@
 
 .send{
   display: flex;
-  margin-top: 80px;
+  margin-top: 90px;
+  @media (max-width:766px) {
+    margin-top: 10px;
+  }
 }
 #check:checked~.wrapper {
     opacity: 1
 }
-
+P{
+  text-align: center;
+  @media (max-width:766px) {
+    font-size: 10px;
+  }
+}
+.form-control{
+  font-size: 15px; 
+  bottom: 20px;
+  @media (max-width:766px) {
+    font-size: 10px; 
+  bottom: 20px;
+  }
+}
+.fa-solid.fa-arrow-down{
+  margin-right: 150px;
+  @media (max-width:766px) {
+  margin-right: 100px;
+    
+  }
+}
 .header {
     padding: 13px;
     background-color: blue;
@@ -401,9 +425,19 @@ button {
 
 .send i{
   margin-top: 10px;
+  @media (max-width:766px) {
+  margin-top: 1px;
+    
+  }
 }
 textarea{
-  height: 30px;
+  height: 50px;
+  @media (max-width:766px) {
+    height: 30px;
+  }
+  @media (max-width:600px) {
+    height: 30px;
+  }
 }
 .form-control:focus,
 .btn:focus {
@@ -413,8 +447,14 @@ textarea{
 .btn,
 .btn:focus,
 .btn:hover {
-    background-color: blue;
-    border: blue
+    background-color: rgb(32, 32, 32);
+   
+}
+.btn{
+  background-color: rgb(32, 32, 32);
+@media (max-width:766px) {
+ height: 30px;
+}
 }
 
 #check {

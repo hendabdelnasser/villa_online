@@ -7,7 +7,7 @@ export const environment = {
   baseUrl: 'https://localhost:44311/api',
   //baseUrl: 'https://localhost:44311/api',
   baseUrlNotification : 'https://localhost:44311/',
-  invitationUrl:'http://villaonline.co'
+  invitationUrl:'https://villaonline.co'
 };
 
 /*

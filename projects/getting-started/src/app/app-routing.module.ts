@@ -12,6 +12,9 @@ import { ProjectsComponent } from './components/projects/projects.component';
 //import { ServicesComponent } from './components/how-work/services.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { OurServicesComponent } from './components/ourservices/ourservices.component';
+import { BlogComponent} from './components/blog/blog.component';
+
+
 // import { AboutComponent } from './components/about/about.component';
 // import { ContactComponent } from './components/contact/contact.component';
 // import { ContractorProjectsComponent } from './components/contractor-projects/contractor-projects.component';
@@ -45,7 +48,7 @@ const routes: Routes = [
   { path: `login`, component: SignupComponent },
   { path: `reset-password`, component: ResetPasswordComponent },
   { path: `forget-password`, component: ForgetPasswordComponent },
-
+{path: `blog`, component: BlogComponent},
   // { path: `create-client`, component: ClientCreationComponent },
   // { path: `update-client/:id`, component: ClientCreationComponent },
   // { path: `modals`, component: ModalsComponent },

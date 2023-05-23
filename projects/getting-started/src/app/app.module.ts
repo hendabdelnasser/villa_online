@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PaypalAngularModule, PaypalAppConfigModel } from "paypal-angular"
 import { FileUploadModule } from 'ng2-file-upload';
+import { BlogComponent } from './components/blog/blog.component';
 // import { NewServiceComponent } from './components/register/new-service/new-service.component';
 // import { ContractorProjectsComponent } from './components/contractor-projects/contractor-projects.component';
 // import { NewProjectComponent } from './components/register/new-project/new-project.component';
@@ -43,6 +44,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { GuardService } from './services/guard.service';
 import { InputsAddModelComponent } from './components/register/inputs-add-model/inputs-add-model.component';
+
 // import { ValuesPipe } from './components/home/pipe';
 // import { ProjDetailsComponent } from './components/dashboard/proj-details/proj-details.component';
 registerLocaleData(en);
@@ -68,6 +70,7 @@ const paypalConfig: PaypalAppConfigModel = {
     NavbarComponent,
     InputsAddModelComponent,
     ForgetPasswordComponent,
+    BlogComponent,
     // ModalsComponent,
     // ProjectInvoicesComponent,
     // ClientCreationComponent,
@@ -79,6 +82,7 @@ const paypalConfig: PaypalAppConfigModel = {
     PrivacyComponent,
     RolesComponent,
     OurServicesComponent,
+    BlogComponent,
   ],
   imports: [
     // CommonModule,
@@ -98,6 +102,7 @@ const paypalConfig: PaypalAppConfigModel = {
     ReactiveFormsModule,
     SharedModule,
     LightgalleryModule,
+    
     ],
     exports:[
       // HeaderComponent

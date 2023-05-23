@@ -110,7 +110,10 @@ footer {
     display: block;
     width:100px;
     @media (max-width:600px) {
-    display: none;
+
+
+        width:35px;
+margin-top: 50px;
         
     }
   }

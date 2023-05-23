@@ -266,14 +266,16 @@
   }
 
 
-
 .chat-btn {
     position: absolute;
     right: 14px;
-    margin-top: -94rem;
+    margin-top: -70rem;
     cursor: pointer;
-    @media (max-width: 766px) {
-      bottom: 80px;
+    @media (max-width: 737px) {
+      margin-top: -98rem;
+    }
+    @media (max-width: 793px) {
+      margin-top: -92rem;
     }
     @media (max-width: 600px) {
       bottom: 165px;
@@ -320,7 +322,7 @@
 .wrapper {
     position: absolute;
     right: 20px;
-    bottom: -3rem;
+    bottom: -12rem;
     width: 350px;
     height: 400px;
     background-color: #ccc6c631;

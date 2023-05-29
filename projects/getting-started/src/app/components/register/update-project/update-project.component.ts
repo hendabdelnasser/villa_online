@@ -1,23 +1,18 @@
-import { HttpErrorResponse, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { phaseModel, projectDocumentModel, projectModel, projectTypeModel, serviceModel } from '../../../services/models/projectModel';
-import { regionModel } from '../../../services/models/regionModel';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { CreatephaseModel, CreateserviceModel, CreateprojectModel } from '../../../services/models/createProject';
+import { phaseModel, projectDocumentModel, projectTypeModel, serviceModel, projectModel } from '../../../services/models/projectModel';
 import { UserModel } from '../../../services/models/userModel';
 import { ProjectService } from '../../../services/project.service';
-import { FileUploader, FileUploaderOptions, FileItem } from 'ng2-file-upload';
-import { environment } from 'projects/getting-started/src/environments/environment';
-import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
-import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { CreatephaseModel, CreateprojectModel, CreateserviceModel } from '../../../services/models/createProject';
 
 @Component({
-  selector: 'app-new-project',
-  templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.scss']
+  selector: 'app-update-project',
+  templateUrl: './update-project.component.html',
+  styleUrls: ['./update-project.component.scss']
 })
-export class NewProjectComponent implements OnInit {
-  // regions: Array<{ label: string, value: number }> = [];
+export class UpdateProjectComponent implements OnInit {
+
   constructors: UserModel[] = [];
   allPhases: phaseModel[] = [];
   addArrPhases: CreatephaseModel[] = [];
@@ -43,15 +38,20 @@ isLoaded:boolean=false;
 buttonLoaded:boolean=false;
 userName='';
   users:UserModel[]=[]
-  constructor(private _apiService: ProjectService, private _router: Router,private messages: NzMessageService) { }
+  Projects:CreateprojectModel[] = [];
+  projectId?:any;
+  constructor(private _apiService: ProjectService, private _router: Router,private messages: NzMessageService,private router:ActivatedRoute) { }
 
   ngOnInit(): void {
+     this.projectId=this.router.snapshot.paramMap.get("id");
+
     this.getAllClients();
     this.getAllSevices();
     this.getAllRegion();
     this.getAllConstructors();
     this.getAllProjectType();
     this.getAllUSers();
+    this.getAllProjects();
     this.isLoaded=true
   }
   createdSuccessfully()
@@ -65,10 +65,11 @@ userName='';
   onSave() {
     debugger
     this.buttonLoaded=true;
-    this.newProject.projectDocument = this.AddArrDocument;
-    this.newProject.projectService = this.addArrServices;
+    this.Projects[0].projectDocument = this.AddArrDocument;
+    this.Projects[0].projectService = this.addArrServices;
+    this.Projects[0].id=this.projectId;
     // console.log("new project",this.newProject);
-    this._apiService.post(`/services/app/Project/CreateNew`, this.newProject).subscribe(res => {
+    this._apiService.post(`/services/app/Project/CreateNew`, this.Projects[0]).subscribe(res => {
       // console.log(this.newProject);
       // console.log("added Successfully");
       // console.log(res);
@@ -314,7 +315,6 @@ userName='';
  @Output() public onUploadFinished = new EventEmitter();
  formData : FormData = new FormData();
  uploadFile = (files: FileList | null ) => {
-  debugger
   var f = files as FileList;
   if (f.length === 0) {
       return;
@@ -347,7 +347,6 @@ userName='';
 
   // Preview Image in html
   onFileChange(event: any) {
-    debugger
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
 
@@ -400,5 +399,20 @@ userName='';
     let user = this.users.filter(x => x.id === id)
     return user[0]?.name
   }
+
+  private getAllProjects(tenantId: number = 1) {
+    this._apiService.get(`/services/app/Project/GetAll?tenantId=${tenantId}`).subscribe((response) => {
+      debugger
+      // @ts-ignore
+      if(!response['error']) {
+        this.isLoaded=true;
+        // @ts-ignore
+        this.Projects = response['result'];
+        this.Projects= this.Projects.filter(s=>s.id==this.projectId);
+        console.log(this.Projects,"this.Projects rafie");
+
+      }
+    }, console.error);
 }
 
+}

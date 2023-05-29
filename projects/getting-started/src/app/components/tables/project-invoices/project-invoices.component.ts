@@ -105,6 +105,7 @@ userId:number=0;
         this.isLoaded=true;
         // @ts-ignore
         this.Projects = response['result'];
+        console.log(this.Projects,"this.Projects");
 
       }
     }, console.error);
@@ -122,6 +123,7 @@ private getProjectType(){
 getCurrentUser(){
   this._apiService.get(`/services/app/Session/GetCurrentLoginInformations`).subscribe(
     (res=>{
+      console.log(res,"resultssss");
       // @ts-ignore
       this.user=res.result.user;
       this.userType=this.user.userType;

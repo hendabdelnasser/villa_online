@@ -42,6 +42,7 @@ import { NotesDetailComponent } from '../components/dashboard/proj-details/notes
 import { HeaderComponent } from '../components/layouts/header/header.component';
 import { LightgalleryModule } from 'lightgallery/angular/13';
 import { AdminInvoiceComponent } from '../components/tables/admin-invoice/admin-invoice.component';
+import { UpdateProjectComponent } from '../components/register/update-project/update-project.component';
 
 const paypalConfig: PaypalAppConfigModel = {
   sandbox: 'AbAtXs6_juFW5Qu1Vno3ZhTlR9icI8gbuaPxFGFNokcQArlF2PHE2Ep-Ba-9FUSxFjse1t0MHVYf3332',
@@ -65,6 +66,7 @@ const paypalConfig: PaypalAppConfigModel = {
     NewServiceComponent,
     ContractorProjectsComponent,
     NewProjectComponent,
+    UpdateProjectComponent,
     ProjDashboardComponent,
     ProjDetailsComponent,
     ServiceInvoiceComponent,
@@ -87,6 +89,7 @@ const paypalConfig: PaypalAppConfigModel = {
     CarouselModule,
     SwiperModule,
     NgZorroAntdModule,
+    FormsModule,
     FormsModule,
     // HttpClientModule,
     ReactiveFormsModule,

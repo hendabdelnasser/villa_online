@@ -16,6 +16,7 @@ import { NewServiceComponent } from '../components/register/new-service/new-serv
 // import { ServicesComponent } from '../components/services/services.component';
 import { ProjectInvoicesComponent } from '../components/tables/project-invoices/project-invoices.component';
 import { SharedComponent } from './shared.component';
+import { UpdateProjectComponent } from '../components/register/update-project/update-project.component';
 
 const approutes: Routes = [{ path: '', component: SharedComponent,children:[
   //  { path: `home`, component: HomeComponent },
@@ -33,7 +34,7 @@ const approutes: Routes = [{ path: '', component: SharedComponent,children:[
    { path: `new-service`, component: NewServiceComponent },
    { path: `update-service/:id`, component: NewServiceComponent },
    { path: `new-project`, component: NewProjectComponent },
-   { path: `update-project/:id`, component: NewProjectComponent },
+   { path: `update-project/:id`, component: UpdateProjectComponent },
    { path: `contractor-projects`, component: ContractorProjectsComponent },
    { path: `proj-details/:id`, component: ProjDetailsComponent },
    { path: `proj-dashboard/:id`, component: ProjDashboardComponent },

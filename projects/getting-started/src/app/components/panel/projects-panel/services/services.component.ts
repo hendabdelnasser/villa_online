@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 })
 export class ServicesComponent implements OnInit {
   services=[];
+  servr?:any;
   isLoaded:boolean=false;
   formData : FormData = new FormData();
   service={title:'',data:'',order:0}
@@ -21,11 +22,12 @@ export class ServicesComponent implements OnInit {
   getServices(){
     this._dashService.get(`/services/app/ServicePanal/GetAll?tenantId=1`).subscribe(
       (res=>{
+        console.log(res,"ssssssssssssssssssss");
         this.isLoaded=true
         //@ts-ignore
         if(res['success']){
         //@ts-ignore
-          this.services =res['result']
+          this.services =res['result'];
         }
       })
     )
@@ -119,6 +121,46 @@ images:any[]=[];
     this.isLoaded=true;
 
           this.message.create('success','تم اضافة الخدمة بنجاح')
+          this.service={title:'',data:'',order:0}
+          this.formData.delete('file')
+          this.images=[];
+          this.getServices()
+        }else{
+          this.message.create('error','من فضلك حاول مرة اخري')
+
+        }
+      })
+    )
+  }
+  getdata(id:number,i:number){
+    debugger
+    console.log(id,"id",i,"II");
+    this.isLoaded=false;
+      this._dashService.get(`/services/app/ServicePanal/GetAll?tenantId=1`).subscribe(
+        (res=>{
+          console.log(res,"ssssssssssssssssssss");
+          this.isLoaded=true
+          //@ts-ignore
+          if(res['success']){
+            this.isLoaded=true;
+          //@ts-ignore
+            this.servr =res['result'].filter(s=>s.id==id)
+            console.log(this.servr,"sssssssss");
+          }
+        })
+      )
+
+  }
+  update(){
+    debugger
+    console.log(this.servr);
+    this._dashService.post(`/servicepanal/Update?serciceid=1&Title=${this.servr[0]['title']}&Data=${this.servr[0]['data']}&order=${this.servr[0]['order']}`,this.formData).subscribe(
+      (res=>{
+        //@ts-ignore
+        if(res['success']){
+    this.isLoaded=true;
+
+          this.message.create('success','تم تعديل الخدمة بنجاح')
           this.service={title:'',data:'',order:0}
           this.formData.delete('file')
           this.images=[];

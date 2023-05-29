@@ -17,14 +17,17 @@ export class ClientCreationComponent implements OnInit {
   isSubmitted: boolean = false;
   userTypes: Array<{ label: string, value: number }> = [
     {
-      label: 'مستخدم',
+      label: 'ادمن',
       value: 0
     },{
+    label: 'مستخدم',
+    value: 1
+  },{
       label: 'عميل',
-      value: 1
+      value: 2
     },{
       label: 'مقاول',
-      value: 2
+      value: 3
     }
   ];
 
@@ -91,6 +94,7 @@ export class ClientCreationComponent implements OnInit {
   }
 
   register() {
+    debugger
     this.isSubmitted = true;
     this.buttonLoaded=true;
     if(this.form.valid) {

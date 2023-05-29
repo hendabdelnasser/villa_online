@@ -47,7 +47,7 @@
                 </a>
               </li>
               <li>
-                <a style="color: black;">
+                <a routerLink="/be-partner" style="color: black;">
                   كن شريكاا
                 </a>
               </li>
@@ -79,7 +79,7 @@
                 <a routerLink="/about" style="color: black;">لماذا نحن؟</a>
               </li>
               <li>
-                <a  style="color: black;">استشارات</a>
+                <a  routerLink="/consulteds" style="color: black;">استشارات</a>
               </li>
 
             </ul>
@@ -125,13 +125,14 @@
              margin: 10px 0 10px 0;"></div>
              <div >
                 <li>
-                  <a href="https://goo.gl/maps/WJfAQ27kDgWoBN8R8" target="_blank"  style="color: black; ">العنوان: الرياض - حي القيروان - طريق الملك سلمان</a>
+                  <a href="{{ ContactMethodObject[0].value }}" target="_blank"  
+                    style="color: black; ">{{ ContactMethodObject[0].key }}</a>
                 </li>
                 <li>
-                  <a style="color: black;">بريد اليكتروني : email@gmail.com</a>
+                  <a style="color: black;">{{ ContactMethodObject[1].key }}: {{ ContactMethodObject[1].value }}</a>
                 </li>
                 <li>
-                  <a href="https://wa.me/966508227705" target="_blank"  style="color: black;"> واتساب: +970244587445</a>
+                  <a href="https://wa.me/{{ ContactMethodObject[2].value }}" target="_blank"  style="color: black;"> {{ ContactMethodObject[2].key }}: {{ ContactMethodObject[2].value }}</a>
                 </li>
              </div>
           </div>

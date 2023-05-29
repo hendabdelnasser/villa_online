@@ -18,6 +18,10 @@ import { ProfisionalityComponent } from '../projects-panel/profisionality/profis
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { PrivacyPanelComponent } from '../projects-panel/privacy/privacy.component';
 import { RolesPanelComponent } from '../projects-panel/roles-panel/roles-panel.component';
+import { ContactUsMethodComponent } from '../projects-panel/contact-us-method/contact-us-method.component';
+import { BePartnerComponent } from '../projects-panel/be-partner/be-partner.component';
+import { ConsultedComponent } from '../projects-panel/consulted/consulted.component';
+
 
 
 @NgModule({
@@ -34,7 +38,10 @@ import { RolesPanelComponent } from '../projects-panel/roles-panel/roles-panel.c
     ContactUsComponent,
     HomeBannerComponent,
     PrivacyPanelComponent,
-    RolesPanelComponent
+    RolesPanelComponent,
+    ContactUsMethodComponent,
+    BePartnerComponent,
+    ConsultedComponent
   ],
   imports: [
     CommonModule,

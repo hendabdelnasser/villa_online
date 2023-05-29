@@ -94,6 +94,7 @@ images:any[]=[];
     this.images.splice(index,1);
     this.formData.delete('file'+index)
   }
+  
   addAbout(){
     // console.log(this.project)
     this.isLoaded=false;

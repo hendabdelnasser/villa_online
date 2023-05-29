@@ -1,7 +1,7 @@
 import { projectDocumentModel } from "./projectModel";
 
 export class CreateprojectModel{
-    id:number=1;
+    id:number=0;
     name:string="";
     image:string="";
     description:string="";

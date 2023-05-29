@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit ,AfterViewInit{
       this.carouselPatner.nativeElement.click();
       this.carouselTamayoz.nativeElement.click();
 
-    }, 5000)
+    }, 2000)
   }
 
   ngOnInit(): void {

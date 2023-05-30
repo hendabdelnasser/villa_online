@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   constructor(public _Router: Router, private _dashboardServcie: DashboardPanelService) {}
   year = new Date().getFullYear();
 
-  ContactMethodObject = [{key: '', value: '', id:'', tenantId:''}];
+  ContactMethodObject = [{key: '', value: '', id:'', tenantId:'', order: '',extraLink: ''}];
 
   ngOnInit(): void {
     this.loadFooterContact();
@@ -23,7 +23,6 @@ export class FooterComponent implements OnInit {
       (res: any) => {
         if(res['success']){
             this.ContactMethodObject = res['result'];
-            console.log(this.ContactMethodObject)
           }
       }
     );

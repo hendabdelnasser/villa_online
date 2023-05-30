@@ -3,16 +3,16 @@ import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-pa
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
-  selector: 'app-contactus-method',
-  templateUrl: './contact-us-method.component.html',
-  styleUrls: ['./contact-us-method.component.scss']
+  selector: 'app-questions-and-answers',
+  templateUrl: './questions-and-answers.component.html',
+  styleUrls: ['./questions-and-answers.component.scss']
 })
-export class ContactUsMethodComponent implements OnInit {
+export class QuestionsAndAnswersComponent implements OnInit {
 
   projects=[];
   isLoaded:boolean=false;
   formData : FormData = new FormData();
-  project={key:'',value:'',order:0,typeID:0,id:0,tenantId:0,extraLink: ''}
+  project={question:'',answer: '',order:0,typeID:0,id:0,tenantId:0}
 
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
@@ -22,8 +22,8 @@ export class ContactUsMethodComponent implements OnInit {
   }
 
   getProjects(){
-    this._dashService.get(`/services/app/HomePanal/GetAllContactUSMethodPanal?tenantId=1`).subscribe(
-      (res=>{
+    this._dashService.get(`/services/app/HomePanal/GetAllQuestionsAndAnswers?tenantId=1`).subscribe(
+      (res: any)=>{
         this.isLoaded=true
         //@ts-ignore
         if(res['success']){
@@ -31,40 +31,36 @@ export class ContactUsMethodComponent implements OnInit {
           this.projects =res['result']
         }
       })
-    )
   }
 
     addContact(){
     // console.log(this.project)
     this.isLoaded=false;
     let fetch={
-      key: this.project.key,
-      value: this.project.value,
-      order: this.project.order,
-      extraLink: this.project.extraLink,
+      Question: this.project.question,
+      Answer: this.project.answer,
       tenantId:1
     }
-    this._dashService.post(`/services/app/HomePanal/CreateContactUsMethod`,fetch).subscribe(
-      (res=>{
+    this._dashService.post(`/services/app/HomePanal/CreateQuestionAndAnswer`,fetch).subscribe(
+      (res: any)=>{
         //@ts-ignore
         if(res['success']){
-      this.isLoaded=true;
+         this.isLoaded=true;
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={key:'',value:'',order:0,typeID:0,id:0, tenantId: 0,extraLink: ''}
+          this.project={question: '',answer: '',order:0,typeID:0,id:0, tenantId: 0}
           this.formData.delete('file')
           this.getProjects()
         }else{
           this.message.create('error','من فضلك حاول مرة اخري')
         }
       })
-      )
     }
 
     deleteService(id:number,index:number){
       this.isLoaded=false;
 
-      this._dashService.delete(`/services/app/HomePanal/DeleteContactMethodUS?Id=${id}`).subscribe((response) => {
+      this._dashService.delete(`/services/app/HomePanal/DeleteQuestionAndAnswer?Id=${id}`).subscribe((response) => {
         //@ts-ignore
         if(response['success']){
       this.isLoaded=true;
@@ -73,22 +69,20 @@ export class ContactUsMethodComponent implements OnInit {
           this.message.create('success','تم الحذف  بنجاح')
         }
 
-      }, (error=>{
+      }, (error: any)=>{
         this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
       })
-      );
+      ;
     }
 
     openUpdatedModal(id: number, index: number){
-      this._dashService.get(`/services/app/HomePanal/GetSingleContactUsMethod?id=${id}`).subscribe((response: any) => {
+      this._dashService.get(`/services/app/HomePanal/GetSingleQuestionAndAnswer?id=${id}`).subscribe((response: any) => {
         //@ts-ignore
         if(response['success']){
           this.project.id = response['result'].id;
           this.project.tenantId = response['result'].tenantId;
-          this.project.key = response['result'].key;
-          this.project.value = response['result'].value;
-          this.project.order = response['result'].order;
-          this.project.extraLink = response['result'].extraLink;
+          this.project.question = response['result'].question;
+          this.project.answer = response['result'].answer;
         }
 
       }, (error=>{
@@ -100,14 +94,14 @@ export class ContactUsMethodComponent implements OnInit {
     updateContactUsMethod(){
       this.isLoaded = false;
 
-      this._dashService.put(`/services/app/HomePanal/UpdateContactUSMethod`,this.project).subscribe(
+      this._dashService.put(`/services/app/HomePanal/UpdateQuestionAndAnswer`,this.project).subscribe(
         (res=>{
           //@ts-ignore
           if(res['success']){
           this.isLoaded=true;
   
             this.message.create('success','تم اضافة البيانات بنجاح')
-            this.project={key:'',value:'',order:0,typeID:0,id:0, tenantId: 0,extraLink: ''}
+            this.project={question:'',answer:'',order:0,typeID:0,id:0, tenantId: 0}
             this.formData.delete('file')
             this.getProjects()
           }else{

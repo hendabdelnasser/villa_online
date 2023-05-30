@@ -102,9 +102,9 @@
                 <li>
                   <a routerLink="/privacy" style="color: black;">سياسة الخصوصية</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a  style="color: black;">أسئلة واجوبة</a>
-                </li>
+                </li> -->
               <!-- <li>
                 <a href="mailto:info@villaonline.co" style="color: black;">info@villaonline.co</a>
               </li>
@@ -124,16 +124,16 @@
              border-radius: 10px;
              margin: 10px 0 10px 0;"></div>
              <div >
-                <li>
-                  <a href="{{ ContactMethodObject[0].value }}" target="_blank"  
-                    style="color: black; ">{{ ContactMethodObject[0].key }}</a>
+                <li *ngFor="let item of ContactMethodObject">
+                  <a href="{{ item['extraLink'] }}" target="_blank"  
+                    style="color: black; ">{{ item['key'] }} : {{  item['value']}}</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a style="color: black;">{{ ContactMethodObject[1].key }}: {{ ContactMethodObject[1].value }}</a>
                 </li>
                 <li>
                   <a href="https://wa.me/{{ ContactMethodObject[2].value }}" target="_blank"  style="color: black;"> {{ ContactMethodObject[2].key }}: {{ ContactMethodObject[2].value }}</a>
-                </li>
+                </li> -->
              </div>
           </div>
             <!-- <h3 style="color: black;">التواصل الاجتماعي</h3>

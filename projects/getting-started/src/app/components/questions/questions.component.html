@@ -1,0 +1,27 @@
+<app-header></app-header>
+<section class="about-page">
+    <div class="page-header">
+        <div class="container">
+            <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp" style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">إعرف عنا</h3>
+            <h5>الاسئلة و الاجوبة</h5>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="content row">
+                <div class="txt-info mb-5 col-10">
+                    <h3> فيلا<span style="color: #e73845;font-size: 4rem;">.</span>أونلاين</h3>
+                    <ng-container *ngFor="let para of projects" >
+                        <nz-collapse style="margin-bottom: 2em;">
+                        <nz-collapse-panel [nzHeader]="para.question">
+                          <p style="margin:0;">
+                            {{ para.answer }}
+                          </p>
+                        </nz-collapse-panel>
+                      </nz-collapse>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

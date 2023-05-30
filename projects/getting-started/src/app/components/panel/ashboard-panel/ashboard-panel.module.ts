@@ -21,6 +21,7 @@ import { RolesPanelComponent } from '../projects-panel/roles-panel/roles-panel.c
 import { ContactUsMethodComponent } from '../projects-panel/contact-us-method/contact-us-method.component';
 import { BePartnerComponent } from '../projects-panel/be-partner/be-partner.component';
 import { ConsultedComponent } from '../projects-panel/consulted/consulted.component';
+import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-answers/questions-and-answers.component';
 
 
 
@@ -41,7 +42,8 @@ import { ConsultedComponent } from '../projects-panel/consulted/consulted.compon
     RolesPanelComponent,
     ContactUsMethodComponent,
     BePartnerComponent,
-    ConsultedComponent
+    ConsultedComponent,
+    QuestionsAndAnswersComponent
   ],
   imports: [
     CommonModule,

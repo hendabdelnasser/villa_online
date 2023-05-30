@@ -46,6 +46,8 @@ import { GuardService } from './services/guard.service';
 import { InputsAddModelComponent } from './components/register/inputs-add-model/inputs-add-model.component';
 import { OurPartnersComponent } from './components/our-partners/our-partners.component';
 import { ConsultedsComponent } from './components/consulteds/consulteds.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+
 
 // import { ValuesPipe } from './components/home/pipe';
 // import { ProjDetailsComponent } from './components/dashboard/proj-details/proj-details.component';
@@ -86,7 +88,8 @@ const paypalConfig: PaypalAppConfigModel = {
     OurServicesComponent,
     BlogComponent,
     OurPartnersComponent,
-    ConsultedsComponent
+    ConsultedsComponent,
+    QuestionsComponent,
   ],
   imports: [
     // CommonModule,

@@ -6,7 +6,7 @@
   <div class="content w-100">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item" *ngFor="let ban of banners;let i = index" [ngClass]="i === 1 ? 'active':''">
+        <div class="carousel-item" data-bs-interval="7000" *ngFor="let ban of banners;let i = index" [ngClass]="i === 1 ? 'active':''">
           <img [src]="imgUrl + ban.url" class="d-block w-100" [alt]="i+'img'">
         </div>
       </div>
@@ -21,11 +21,23 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    <!-- <div class="home-page-slider">
+      <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="7000">
+        <div nz-carousel-content *ngFor="let ban of banners; let i = index">
+          
+          <div class="home-page-slider-item" style="
+            background-image: url('{{ imgUrl + ban.url }}');
+            
+            "></div>
+        </div>
+      </nz-carousel>
+    </div> -->
   </div>
   
   <section class="about-section" style="background-color: #fff;">
     <div class=""><!--container-->
-      <header>
+     
+      <header style="background-color: #b2bec3;">
         <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp mb-2"
           style="color:#233453;visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
           كيف تعمل
@@ -34,8 +46,8 @@
           <!-- <div class="line-2"></div> -->
         </h3>
       </header>
-
       <article class="how-work-section" *ngFor="let how of howWork;let i = index;i+1" style="padding-bottom: 50px;">
+        
         <div *ngIf="i%2!=0 ;else elseb" class="row m-2" >
           <div class="txt col-sm-12 col-md-6 col-lg-6 order-first">
             <h4 class="t">{{how.title}}</h4>
@@ -177,7 +189,7 @@
       </header>
       <article class="row">
         <div class="container">
-          <!-- <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
+           <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row">
@@ -210,23 +222,24 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </button>
-          </div> -->
-          <div class="partner-section-slider" style="z-index: 9999;">
-            <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="6000">
+          </div> 
+          <!-- <div class="partner-section-slider" style="z-index: 9999;">
+            <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="8000">
               <div nz-carousel-content *ngFor="let part of partners; let i = index">
-                <!-- <img [src]="imgUrl + part.url" class="d-block" [alt]="i+'img'"> -->
+               
                 <div style="
                   background-image: url('{{ imgUrl + part.url }}');
-                  background-position: center center;
                   background-repeat: none;
                   background-size: cover;
-                  width: 600px;
+                  background-position: center center;
+                  width: inherit;
                   height: 400px;
                   margin: 0 auto;
+                  overflow: hidden;
                   "></div>
               </div>
             </nz-carousel>
-          </div>
+          </div> -->
         </div>
       </article>
     </div>

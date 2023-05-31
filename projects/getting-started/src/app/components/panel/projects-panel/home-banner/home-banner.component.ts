@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-home-banner',
@@ -13,7 +14,7 @@ export class HomeBannerComponent implements OnInit {
   projects=[{id:0,url:''}];
   isLoaded:boolean=false;
  formData : FormData = new FormData();
- project={url:''}
+ project={url:'', id: 0, tenantId: 0}
 
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
@@ -34,6 +35,15 @@ export class HomeBannerComponent implements OnInit {
         }
       })
     )
+  }
+
+  getSingleHomePanel(id: number){
+    this._dashService.get(`/services/app/HomePanal/GetHomePanal?id=${id}`).subscribe(
+      (res: any)=>{
+        if(res['success']){
+          this.project =res['result']
+        }
+      })
   }
 
   @Output() public onUploadFinished = new EventEmitter();
@@ -97,6 +107,7 @@ images:any[]=[];
     this.images.splice(index,1);
     this.formData.delete('file'+index)
   }
+  
   addAbout(){
     this.isLoaded=false;
 
@@ -104,10 +115,10 @@ images:any[]=[];
       (res=>{
         //@ts-ignore
         if(res['success']){
-      this.isLoaded=true;
+          this.isLoaded=true;
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={url:''}
+          this.project={url:'', id: 0, tenantId: 0}
           this.images=[];
         this.formData.delete('file')
 
@@ -118,7 +129,7 @@ images:any[]=[];
       })
       )
     }
-    imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+    imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
     deleteProject(id:number,index:number){
       this.isLoaded=false;
@@ -135,6 +146,29 @@ images:any[]=[];
         this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
       })
       );
+    }
+
+    updateHomePanel() {
+      this.isLoaded=false;
+
+    this._dashService.post(`/HomePanal/UpdateHomePanal?id=${this.project.id}`,this.formData).subscribe(
+      (res=>{
+        //@ts-ignore
+        if(res['success']){
+          this.isLoaded=true;
+
+          this.message.create('success','تم تعديل البيانات بنجاح')
+          this.project={url:'',id: 0, tenantId: 0}
+          this.images=[];
+          this.formData.delete('file')
+
+          this.getProjects()
+        }else{
+          this.message.create('error','من فضلك حاول مرة اخري')
+        }
+      })
+      )
+      
     }
   }
 

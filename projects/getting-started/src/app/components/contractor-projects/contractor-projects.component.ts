@@ -5,6 +5,7 @@ import { projectModel, projectTypeModel } from 'projects/getting-started/src/app
 import { ApiService } from './../../services/api.service';
 import { UserModel } from './../../services/models/userModel';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-contractor-projects',
@@ -22,7 +23,7 @@ export class ContractorProjectsComponent implements OnInit {
   projectType:projectTypeModel[]=[];
   regions:regionModel[]=[]
   form:FormGroup= new FormGroup({});
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+  imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
   isLoaded:boolean=false;
 
   constructor(private _apiservice:ApiService,private router:Router,private fb:FormBuilder) { }

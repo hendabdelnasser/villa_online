@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardPanelService } from '../../panel/ashboard-panel/service/dashboard-panel.service';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -13,6 +14,7 @@ export class FooterComponent implements OnInit {
   year = new Date().getFullYear();
 
   ContactMethodObject = [{key: '', value: '', id:'', tenantId:'', order: '',extraLink: ''}];
+  locationImage = `${environment.baseUrl}/wwwroot/Uploads/panal/locationImg.png`;
 
   ngOnInit(): void {
     this.loadFooterContact();

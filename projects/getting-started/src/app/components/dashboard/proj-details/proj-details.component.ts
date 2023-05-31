@@ -10,6 +10,7 @@ import { CreateprojectModel } from '../../../services/models/createProject';
 import { NotesModel } from '../../../services/models/notesModel';
 import lgZoom from 'lightgallery/plugins/zoom';
 import { LightGallery } from 'lightgallery/lightgallery';
+import { environment } from 'projects/getting-started/src/environments/environment';
 @Component({
   selector: 'app-proj-details',
   templateUrl: './proj-details.component.html',
@@ -22,7 +23,7 @@ export class ProjDetailsComponent implements OnInit {
   projectDetails = new projectModel;
   projectPhase = new phaseModel;
   projectService = new serviceModel;
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+  imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
   user:UserModel=new UserModel;
   userId:number=0;
   isLoaded:boolean=false;

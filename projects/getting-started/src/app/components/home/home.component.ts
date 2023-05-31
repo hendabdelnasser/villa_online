@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { environment } from 'projects/getting-started/src/environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,11 +12,11 @@ export class HomeComponent implements OnInit ,AfterViewInit{
 
   constructor(private _apiservice:ApiService,private router:Router) { }
 
-
+  effect = 'scrollx';
   services:any;
   isLoaded=false;
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
-  //imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
+  //imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
    @ViewChild('carousel1')
   carousel!: ElementRef;

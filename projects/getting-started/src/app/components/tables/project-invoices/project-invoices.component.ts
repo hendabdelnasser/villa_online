@@ -22,7 +22,7 @@ export class ProjectInvoicesComponent implements OnInit {
 
   Projects:projectModel[] = [];
   // Imgurl = environment.baseUrlNotification+ "Uploads/Project/";
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+  imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
   isLoaded:boolean=false;
   filter:number=2;
   payment: any;

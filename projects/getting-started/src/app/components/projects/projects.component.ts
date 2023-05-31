@@ -1,3 +1,4 @@
+import { environment } from 'projects/getting-started/src/environments/environment';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class ProjectsComponent implements OnInit {
   project1:{title:'',data:'',url:''}[]=[];
   project2:{title:'',data:'',url:''}[]=[];
   project3:{title:'',data:'',url:''}[]=[];
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
   ngOnInit(): void {
     this.getProjectByType(1)

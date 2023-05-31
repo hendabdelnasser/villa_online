@@ -131,7 +131,7 @@
       }
     }
     .about-section{
-      padding: 4rem 0;
+      //padding: 4rem 0;
       header {
           display: flex;
           align-items: center;
@@ -142,14 +142,14 @@
                   font-size: 20px;
               }
               color: #191236;
-              font-size: 35px;
-              margin-bottom: 30px;
+              font-size: 25px;
+              margin-bottom: 20px;
           }
         }
         .txt{
 
           p{
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #24272D;
           }
         }
@@ -176,7 +176,7 @@
     }
 
 
-    .how-work-section{background-color: #b2bec3;padding: 1.3em;margin-top: 2em;}
+    .how-work-section{background-color: #b2bec3;padding: 1.3em}
     
     .how-work-section h4{
     
@@ -213,10 +213,10 @@
     }
     .how-work-section img{
     
-      box-shadow: 5px 5px 10px grey;
-      -moz-box-shadow: 5px 5px 10px grey;
-      -webkit-box-shadow: 5px 5px 10px grey;
-      -khtml-box-shadow: 5px 5px 10px grey;
+      box-shadow: -2px 10px 17px 0px grey;
+      -moz-box-shadow: -2px 10px 17px 0px grey;
+      -webkit-box-shadow: -2px 10px 17px 0px grey;
+      -khtml-box-shadow: -2px 10px 17px 0px grey;
       margin-bottom: 25px;
   
     }
@@ -337,28 +337,29 @@ h3.wow.fadeInUp.mb-5{
     right: 20px;
     bottom: 8rem;
     width: 350px;
-    height: 400px;
-    background-color: #ccc6c631;
+    height: 550px;
+    background-color: #fff;
     border-radius: 25px;
     border: solid;
     margin-right: 75px;
     border-color: #24272D;
-    opacity: 0;
+    display: none;
     transition: all 0.4s;
+    z-index: 999;
     @media (max-width:1100px) {
       bottom: 2rem;    
     }
     @media (max-width:766px) {
       bottom: 200px;
     width: 230px;
-    height: 280px;
+    height: 500px;
 
       
     }
     @media (max-width:600px) {
       bottom: 190px;
     width: 230px;
-    height: 280px;
+    height: 500px;
 
       
     }
@@ -366,13 +367,13 @@ h3.wow.fadeInUp.mb-5{
 
 .send{
   display: flex;
-  margin-top: 90px;
+  margin-top: 30px;
   @media (max-width:766px) {
     margin-top: 10px;
   }
 }
 #check:checked~.wrapper {
-    opacity: 1
+    display: block;
 }
 P{
   text-align: center;
@@ -477,3 +478,18 @@ textarea{
     margin-left:auto; 
     margin-right:auto;
 }  
+
+
+.slider-section [nz-carousel-content] {
+  text-align: center;
+  
+  color: #fff;
+  overflow: hidden;
+}
+
+.partner-section-slider [nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  color: #fff;
+  overflow: hidden;
+}

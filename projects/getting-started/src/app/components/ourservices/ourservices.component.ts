@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { environment } from 'projects/getting-started/src/environments/environment';
 @Component({
   selector: 'app-ourservices',
   templateUrl: './ourservices.component.html',
@@ -13,7 +14,7 @@ export class OurServicesComponent implements OnInit,AfterViewInit {
 
   services:any;
   isLoaded=false;
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
   @ViewChild('carousel1')
   carousel!: ElementRef;

@@ -7,6 +7,7 @@ import {UserService} from "../../../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit {
   userType:number=3;
   userId:number=2;
   error:string='';
- imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+ imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
   @Output() customerChange:EventEmitter<number> =new EventEmitter<number>();
 

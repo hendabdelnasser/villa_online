@@ -5,6 +5,7 @@ import { ApiService } from './../../../services/api.service';
 import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LightGallery } from 'lightgallery/lightgallery';
 import lgZoom from 'lightgallery/plugins/zoom';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-inputs-add-model',
@@ -16,7 +17,7 @@ export class InputsAddModelComponent implements OnInit,AfterViewInit {
   constructor(private _apiService :ApiService,private message:NzMessageService) { }
   project=new projectModel;
   projectId:number=0;
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+  imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
 
   ngOnInit(): void {
     // this.getCurrentUser()

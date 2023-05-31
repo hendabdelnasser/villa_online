@@ -1,3 +1,4 @@
+import { environment } from 'projects/getting-started/src/environments/environment';
 import { DashboardPanelService } from './../panel/ashboard-panel/service/dashboard-panel.service';
 import { Component, OnInit } from '@angular/core';
 export class Project{
@@ -12,7 +13,7 @@ export class Project{
 })
 
 export class AboutComponent implements OnInit {
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
   constructor(private _dashService:DashboardPanelService) { }
 

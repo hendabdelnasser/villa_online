@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from '../../services/api.service';
 import { ContactModel } from '../../services/models/contactModel';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -48,7 +49,7 @@ export class ContactComponent implements OnInit {
   }
   }
   contactImg=[{url:''}]
- imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+ imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
   getContactImg(){
     this._apiService.get(`/services/app/HomePanal/GetAllContactUSPanal?tenantId=1`).subscribe(

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-contact-us',
@@ -120,7 +121,7 @@ images:any[]=[];
       })
       )
     }
- imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+ imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
     deleteProject(id:number,index:number){
       this.isLoaded=false;

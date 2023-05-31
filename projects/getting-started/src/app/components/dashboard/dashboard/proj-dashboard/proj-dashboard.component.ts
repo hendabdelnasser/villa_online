@@ -40,7 +40,7 @@ export class ProjDashboardComponent implements OnInit {
   userType:number=5;
 isDone:boolean=false;
 userId:number=0;
-imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
 isLoaded:boolean=false;
   constructor(private _projSrc:ProjectService,private route: ActivatedRoute,
     private router: Router,private messages:NzMessageService) { }

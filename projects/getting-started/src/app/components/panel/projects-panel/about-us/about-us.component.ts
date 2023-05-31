@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
+import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
   selector: 'app-about-us',
@@ -13,7 +14,7 @@ export class AboutUsComponent implements OnInit {
   isLoaded:boolean=false;
  formData : FormData = new FormData();
  project={title:'',data:'',order:0,typeID:0}
- imgUrl:string='http://villaonline.co/wwwroot/Uploads/panal/';
+ imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }

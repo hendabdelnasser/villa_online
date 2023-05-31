@@ -26,13 +26,12 @@
   <section class="about-section" style="background-color: #fff;">
     <div class=""><!--container-->
       <header>
-        <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp mb-5"
+        <h3 data-wow-delay="0.5s" data-wow-duration="1s" class="wow fadeInUp mb-2"
           style="color:#233453;visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">
           كيف تعمل
           فيلا
           <span id="piont">.</span> أونلاين
-          <div class="line-2"></div>
-
+          <!-- <div class="line-2"></div> -->
         </h3>
       </header>
 
@@ -40,7 +39,7 @@
         <div *ngIf="i%2!=0 ;else elseb" class="row m-2" >
           <div class="txt col-sm-12 col-md-6 col-lg-6 order-first">
             <h4 class="t">{{how.title}}</h4>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
             <p class="d">{{how.data}}</p>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6 order-last f">
@@ -51,7 +50,7 @@
           <div class="row m-2">
             <div class="txt col-sm-12 col-md-6 col-lg-6 order-last">
               <h4 class="t">{{how.title}}</h4>
-              <div class="line"></div>
+              <!-- <div class="line"></div> -->
               <p class="d">{{how.data}}</p>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 order-first ">
@@ -76,19 +75,41 @@
       <span>مركز المساعدة</span> </div>
    <div class="chat-form"> 
     <div class="face">
-    <i  class="fa-solid fa-circle-user" ></i><input type="text" class="form-control" placeholder="اهلا بك كيف يمكننا مساعدتك؟" >      
+    <i  class="fa-solid fa-circle-user" ></i><p>اهلا بك كيف يمكننا مساعدتك؟</p>    
     </div>
    
     <div class="question">
-      <input type="text" class="form-control" placeholder="أسئلة وأجوبة" style="margin-left: 20px;"> 
-      <input type="text" class="form-control" placeholder="استشارات"> 
+      <a routerLink="/questions" class="form-control" style="margin-left: 20px;">أسئلة وأجوبة</a> 
+      <a routerLink="/consulteds"  class="form-control">استشارات</a> 
     </div >
     <p>أو</p>
     <p>ارسل لنا </p>
     <i class="fa-solid fa-arrow-down" ></i>
     <div class="send">
-      <button class="btn btn-success btn-block"><i class="fa-solid fa-paper-plane"></i></button> <textarea class="form-control" placeholder="ارسل"></textarea> 
-     </div>
+      <!-- <button class="btn btn-success btn-block">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+       <textarea class="form-control" placeholder="ارسل"></textarea>  -->
+       <form #chatForm="ngForm" style="width: 100%">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" placeholder="الاسم" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <input type="text" placeholder="الهاتف" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <input type="text" placeholder="البريد الاكترونى" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <textarea  placeholder="وصف المشكلة" class="form-control" style="height: 100px;"></textarea>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success d-block w-100">إرسال</button>
+            </div>
+          </div>
+       </form>
+    </div>
    </div> 
   </div>
   <section class="projects-section" style="background-color:#dfe6e9">
@@ -104,27 +125,44 @@
             {{data.data}}
           </p>
         </div>
-        <div class="slider-section">
-        <div id="tamayoz" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let ban of profissionalPic;let i = index"
-                [ngClass]="i === 1 ? 'active':''">
-                <ng-container *ngFor="let img of ban.professionalismPanalPics">
-                  <img [src]="imgUrl + img.url" class="d-block w-100" [alt]="i+'img'">
-                </ng-container>
+        <!-- <div class="slider-section">
+          <div id="tamayoz" class="carousel slide" data-bs-ride="carousel" >
+              <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let ban of profissionalPic;let i = index"
+                  [ngClass]="i === 1 ? 'active':''" >
+                  <ng-container *ngFor="let img of ban.professionalismPanalPics">
+                    <img [src]="imgUrl + img.url" class="d-block" width="90%" [alt]="i+'img'">
+                  </ng-container>
 
+                </div>
               </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#tamayoz" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" #carousel3 data-bs-target="#tamayoz"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div> 
+        </div> -->
+        <div class="slider-section">
+          <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="5000">
+            <div nz-carousel-content *ngFor="let ban of profissionalPic; let i = index">
+              <ng-container *ngFor="let img of ban.professionalismPanalPics">
+                <div style="
+                  background-image: url('{{ imgUrl + img.url }}');
+                  background-position: center center;
+                  background-repeat: none;
+                  background-size: cover;
+                  width: 100%;
+                  height: 600px;
+                  margin: 0 auto;
+                  "></div>
+              </ng-container>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#tamayoz" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" #carousel3 data-bs-target="#tamayoz"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div> 
+          </nz-carousel>
         </div>
       </article>
     </div>
@@ -139,7 +177,7 @@
       </header>
       <article class="row">
         <div class="container">
-          <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
+          <!-- <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row">
@@ -172,6 +210,22 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </button>
+          </div> -->
+          <div class="partner-section-slider" style="z-index: 9999;">
+            <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="6000">
+              <div nz-carousel-content *ngFor="let part of partners; let i = index">
+                <!-- <img [src]="imgUrl + part.url" class="d-block" [alt]="i+'img'"> -->
+                <div style="
+                  background-image: url('{{ imgUrl + part.url }}');
+                  background-position: center center;
+                  background-repeat: none;
+                  background-size: cover;
+                  width: 600px;
+                  height: 400px;
+                  margin: 0 auto;
+                  "></div>
+              </div>
+            </nz-carousel>
           </div>
         </div>
       </article>

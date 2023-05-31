@@ -6,13 +6,14 @@ import { regionModel } from 'projects/getting-started/src/app/services/models/re
 import { ActivatedRoute } from '@angular/router';
 import lgZoom from 'lightgallery/plugins/zoom';
 import { LightGallery } from 'lightgallery/lightgallery';
+import { environment } from 'projects/getting-started/src/environments/environment';
 @Component({
   selector: 'app-phases-detail',
   templateUrl: './phases-detail.component.html',
   styleUrls: ['./phases-detail.component.scss']
 })
 export class PhasesDetailComponent implements OnInit {
-  imgUrl:string='http://villaonline.co/wwwroot/Uploads/';
+  imgUrl:string= `${environment.baseUrl}/wwwroot/Uploads/`;
   isReview:boolean=false;
   tooltips = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
   value = 0;

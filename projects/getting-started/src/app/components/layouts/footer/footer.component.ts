@@ -14,7 +14,7 @@ export class FooterComponent implements OnInit {
   year = new Date().getFullYear();
 
   ContactMethodObject = [{key: '', value: '', id:'', tenantId:'', order: '',extraLink: ''}];
-  locationImage = `${environment.baseUrl}/wwwroot/Uploads/panal/locationImg.png`;
+  locationImage = `${environment.baseUrl}/wwwroot/Uploads/panal/locationImg2.jpg`;
 
   ngOnInit(): void {
     this.loadFooterContact();

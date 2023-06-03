@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgwWowService } from 'ngx-wow';
+import { SignalRService } from './services/signal-rservice.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { NgwWowService } from 'ngx-wow';
 })
 export class AppComponent {
   title = 'gettingStarted';
-  constructor(private wowService: NgwWowService) {
+  constructor(private wowService: NgwWowService, private signalR: SignalRService) {
     this.wowService.init();
+    signalR.startConnection();
   }
 }

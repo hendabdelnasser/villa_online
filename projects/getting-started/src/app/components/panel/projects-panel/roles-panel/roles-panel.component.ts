@@ -12,7 +12,7 @@ export class RolesPanelComponent implements OnInit {
   projects=[];
   isLoaded:boolean=false;
  formData : FormData = new FormData();
- project={title:'',data:'',order:0,typeID:0}
+ project={id:'',titel:'',data:'',order:0,typeID:0}
 
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
@@ -100,7 +100,7 @@ images:any[]=[];
     this.isLoaded=false;
     let fetch={
       data: this.project.data,
-      title: this.project.title,
+      titel: this.project.titel,
       tenantId:1
     }
     this._dashService.post(`/services/app/HomePanal/CreateNewTerms`,fetch).subscribe(
@@ -110,7 +110,7 @@ images:any[]=[];
       this.isLoaded=true;
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={title:'',data:'',order:0,typeID:0,}
+          this.project={id:'',titel:'',data:'',order:0,typeID:0,}
           this.images=[];
           this.formData.delete('file')
           this.getProjects()
@@ -136,6 +136,46 @@ images:any[]=[];
         this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
       })
       );
+    }
+
+    openUpdatedModal(id: number, index: number){
+      this._dashService.get(`/services/app/HomePanal/GetTerms?id=${id}`).subscribe((response: any) => {
+        //@ts-ignore
+        if(response['success']){
+          this.project.id = response['result'].id;
+          this.project.titel = response['result'].titel;
+          this.project.data = response['result'].data;
+        }
+
+      }, (error=>{
+        this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
+        })
+      );
+    }
+    
+    updateTerms(){
+      this.isLoaded=false;
+      let fetch={
+          tenantId: 1,
+          id:this.project.id,
+          data: this.project.data,
+          titel:this.project.titel
+      }
+
+      this._dashService.put('/services/app/HomePanal/UpdateTerms', fetch).subscribe(
+        (res: any)=>{
+          if(res['success']){
+             this.isLoaded=true;
+
+            this.message.create('success','تم تعديل البيانات بنجاح')
+            this.project={id:'',titel:'',data:'',order:0,typeID:0,}
+            this.images=[];
+            this.formData.delete('file')
+            this.getProjects()
+          }else{
+            this.message.create('error','من فضلك حاول مرة اخري')
+          }
+        })
     }
   }
 

@@ -12,7 +12,7 @@ export class PrivacyPanelComponent implements OnInit {
   projects=[];
   isLoaded:boolean=false;
  formData : FormData = new FormData();
- project={title:'',data:'',order:0,typeID:0}
+ project={id:'',title:'',data:'',order:0,typeID:0}
 
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
@@ -108,7 +108,7 @@ images:any[]=[];
       this.isLoaded=true;
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={title:'',data:'',order:0,typeID:0,}
+          this.project={id:'',title:'',data:'',order:0,typeID:0,}
           this.images=[];
           this.formData.delete('file')
           this.getProjects()
@@ -135,5 +135,43 @@ images:any[]=[];
       })
       );
     }
-  }
+    
+    openUpdatedModal(id: number, index: number){
+      this._dashService.get(`/services/app/HomePanal/GetPrivacy?id=${id}`).subscribe((response: any) => {
+        //@ts-ignore
+        if(response['success']){
+          this.project.id = response['result'].id;
+          this.project.data = response['result'].data;
+        }
+
+      }, (error=>{
+        this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
+        })
+      );
+    }
+
+    updatePrivacy(){
+      this.isLoaded=false;
+      let fetch={
+          id: this.project.id,
+          tenantId: 1,
+          data: this.project.data,
+      }
+
+      this._dashService.put('/services/app/HomePanal/UpdatePrivacy', fetch).subscribe(
+        (res: any)=>{
+          if(res['success']){
+             this.isLoaded=true;
+
+            this.message.create('success','تم تعديل البيانات بنجاح')
+            this.project={id:'',title:'',data:'',order:0,typeID:0,}
+            this.images=[];
+            this.formData.delete('file')
+            this.getProjects()
+          }else{
+            this.message.create('error','من فضلك حاول مرة اخري')
+          }
+        })
+    }
+}
 

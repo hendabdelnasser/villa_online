@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+  import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
 import { environment } from 'projects/getting-started/src/environments/environment';
@@ -13,7 +13,7 @@ export class HowWorkComponent implements OnInit {
   projects=[];
   isLoaded:boolean=false;
  formData : FormData = new FormData();
- project={title:'',data:'',order:0,typeID:0}
+ project={id: '',title:'',data:'',order:0,typeID:0}
  //imgUrl:string='https://localhost:44311/wwwroot/Uploads/panal/';
   imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
@@ -98,7 +98,6 @@ images:any[]=[];
     this.formData.delete('file'+index)
   }
   addAbout(){
-     console.log(this.project)
     this.isLoaded=false;
     let fetch={
         tenantId: 1,
@@ -113,7 +112,7 @@ images:any[]=[];
       this.isLoaded=true;
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={title:'',data:'',order:0,typeID:0,}
+          this.project={id:'',title:'',data:'',order:0,typeID:0,}
           this.images=[];
           this.formData.delete('file')
           this.getProjects()
@@ -122,46 +121,85 @@ images:any[]=[];
         }
       })
       )
-    }
-    addAboutImg(){
-      console.log(this.project)
+  }
+  addAboutImg(){
+    console.log(this.project)
 
-      this.isLoaded=false;
+    this.isLoaded=false;
 
-    this._dashService.post(`/HomePanal/CreateNewHowWork?Title=${this.project['title']}`,this.formData).subscribe(
-      (res=>{
-        //@ts-ignore
+  this._dashService.post(`/HomePanal/CreateNewHowWork?Title=${this.project['title']}`,this.formData).subscribe(
+    (res=>{
+      //@ts-ignore
 
-        if(res['success']){
-      this.isLoaded=true;
+      if(res['success']){
+    this.isLoaded=true;
 
-          this.message.create('success','تم اضافة الصور بنجاح')
-          this.project={title:'',data:'',order:0,typeID:0,}
-          this.images=[];
-          this.formData.delete('file')
-          this.getProjects()
-        }else{
-          this.message.create('error','من فضلك حاول مرة اخري')
-        }
-      })
-      )
-    }
-    deleteService(id:number,index:number){
-      this.isLoaded=false;
+        this.message.create('success','تم اضافة الصور بنجاح')
+        this.project={id:'',title:'',data:'',order:0,typeID:0,}
+        this.images=[];
+        this.formData.delete('file')
+        this.getProjects()
+      }else{
+        this.message.create('error','من فضلك حاول مرة اخري')
+      }
+    })
+    )
+  }
+  deleteService(id:number,index:number){
+    this.isLoaded=false;
 
-      this._dashService.delete(`/services/app/HomePanal/DeleteHowWork?Id=${id}`).subscribe((response) => {
+    this._dashService.delete(`/services/app/HomePanal/DeleteHowWork?Id=${id}`).subscribe((response) => {
+      //@ts-ignore
+      if(response['success']){
+    this.isLoaded=true;
+
+        this.projects = this.projects.filter((item, inx) => inx !== index);
+        this.message.create('success','تم الحذف  بنجاح')
+      }
+
+    }, (error=>{
+      this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
+    })
+    );
+  }
+  
+    openUpdatedModal(id: number, index: number){
+      this._dashService.get(`/services/app/HomePanal/GetHowWork?id=${id}`).subscribe((response: any) => {
         //@ts-ignore
         if(response['success']){
-      this.isLoaded=true;
-
-          this.projects = this.projects.filter((item, inx) => inx !== index);
-          this.message.create('success','تم الحذف  بنجاح')
+          this.project.id = response['result'].id;
+          this.project.title = response['result'].title;
+          this.project.data = response['result'].data;
         }
 
       }, (error=>{
         this.message.create('error',' حاول مرة أخري ... لا يمكن الحذف ')
-      })
+        })
       );
+    }
+
+    updateHowTowork(){
+      this.isLoaded=false;
+      let fetch={
+          tenantId: 1,
+          data: this.project.data,
+          title:this.project.title
+      }
+
+      this._dashService.post(`/HomePanal/UpdateHowWork?Id=${this.project['id']}&Title=${this.project['title']}&Data=${this.project['data']}`,this.formData, fetch).subscribe(
+        (res: any)=>{
+          if(res['success']){
+             this.isLoaded=true;
+
+            this.message.create('success','تم تعديل البيانات بنجاح')
+            this.project={id:'',title:'',data:'',order:0,typeID:0,}
+            this.images=[];
+            this.formData.delete('file')
+            this.getProjects()
+          }else{
+            this.message.create('error','من فضلك حاول مرة اخري')
+          }
+        })
     }
   }
 

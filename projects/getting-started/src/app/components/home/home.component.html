@@ -4,7 +4,7 @@
 </div>
 <section class="home-page" *ngIf="isLoaded">
   <div class="content w-100">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item" data-bs-interval="7000" *ngFor="let ban of banners;let i = index" [ngClass]="i === 1 ? 'active':''">
           <img [src]="imgUrl + ban.url" class="d-block w-100" [alt]="i+'img'">
@@ -20,18 +20,13 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-    </div>
-    <!-- <div class="home-page-slider">
-      <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="7000">
-        <div nz-carousel-content *ngFor="let ban of banners; let i = index">
-          
-          <div class="home-page-slider-item" style="
-            background-image: url('{{ imgUrl + ban.url }}');
-            
-            "></div>
-        </div>
-      </nz-carousel>
     </div> -->
+    <div class="home-page-slider">
+      <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="7000">
+        <div nz-carousel-content *ngFor="let ban of banners; let i = index"
+        style="background-image: url('{{ imgUrl + ban.url }}');"></div>
+      </nz-carousel>
+    </div>
   </div>
   
   <section class="about-section" style="background-color: #fff;">
@@ -189,7 +184,7 @@
       </header>
       <article class="row">
         <div class="container">
-           <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
+           <!-- <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row">
@@ -222,24 +217,25 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </button>
-          </div> 
-          <!-- <div class="partner-section-slider" style="z-index: 9999;">
-            <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="8000">
-              <div nz-carousel-content *ngFor="let part of partners; let i = index">
-               
-                <div style="
-                  background-image: url('{{ imgUrl + part.url }}');
-                  background-repeat: none;
-                  background-size: cover;
-                  background-position: center center;
-                  width: inherit;
-                  height: 400px;
-                  margin: 0 auto;
-                  overflow: hidden;
-                  "></div>
+          </div>  -->
+          <div class="partner-section-slider" style="z-index: 9999;">
+            <!-- <nz-carousel [nzEffect]="effect" nzAutoPlay [nzAutoPlaySpeed]="4000">
+              <div nz-carousel-content *ngFor="let part of partners; let i = index"
+              style="background-image: url('{{ imgUrl + part.url }}');">
               </div>
-            </nz-carousel>
-          </div> -->
+            </nz-carousel> -->
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide>Slide 1</ng-template>  
+    <ng-template carouselSlide>Slide 2</ng-template>  
+    <ng-template carouselSlide>Slide 3</ng-template>  
+              <!-- <ng-container *ngFor="let part of partners; let i = index">
+                <ng-template carouselSlide [id]="i.toString()">
+                  <img [src]="imgUrl + part.url">
+                </ng-template>
+              </ng-container> -->
+          
+            </owl-carousel-o>
+          </div>
         </div>
       </article>
     </div>

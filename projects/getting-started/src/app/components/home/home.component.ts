@@ -11,7 +11,30 @@ import { environment } from 'projects/getting-started/src/environments/environme
 export class HomeComponent implements OnInit ,AfterViewInit{
 
   constructor(private _apiservice:ApiService,private router:Router) { }
-
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
   effect = 'scrollx';
   services:any;
   isLoaded=false;
@@ -27,9 +50,9 @@ export class HomeComponent implements OnInit ,AfterViewInit{
 
    ngAfterViewInit(): void {
     setInterval(() => {
-      this.carousel.nativeElement.click();
-      this.carouselPatner.nativeElement.click();
-      this.carouselTamayoz.nativeElement.click();
+      // this.carousel.nativeElement.click();
+      // this.carouselPatner.nativeElement.click();
+      // this.carouselTamayoz.nativeElement.click();
 
     }, 2000)
   }

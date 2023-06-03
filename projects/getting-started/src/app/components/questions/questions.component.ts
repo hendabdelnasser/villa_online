@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { SignalRService } from '../../services/signal-rservice.service';
 
 @Component({
   selector: 'app-questions',
@@ -8,10 +9,12 @@ import { ApiService } from '../../services/api.service';
 })
 export class QuestionsComponent implements OnInit {
 
+  public signalRMessgae = "";
+
   constructor(private _apiservce:ApiService) { }
 
   ngOnInit(): void {
-    this.getProjects()
+    this.getProjects();
   }
   projects=[{Id:0,question:'', answer: '',tenantId: 0}]
   isLoaded=false;

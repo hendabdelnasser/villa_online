@@ -489,11 +489,14 @@ textarea{
   overflow: hidden;
 }
 
-// .partner-section-slider {
-//   height: 150px;
-//   width: 250px;
-//   margin: 0 auto;
-// }
+.partner-section-slider .slide{
+  width: 100px;
+  height: 100px;
+   @media (max-width:900px) {
+    width: 50px;
+    height: 50px;
+  }
+}
 // .partner-section-slider [nz-carousel-content] {
 //   text-align: center;
 //   color: #fff;
@@ -506,7 +509,8 @@ textarea{
 // }
 
 .home-page-slider{
-  height: 750px;
+  height: 650px;
+
   @media (max-width:900px) {
     height:250px;
   }
@@ -515,7 +519,6 @@ textarea{
   text-align: center;
   color: #fff;
   overflow: hidden;
-  width: 100%;
   background-repeat: none;
   background-size: cover;
   background-position: center center;

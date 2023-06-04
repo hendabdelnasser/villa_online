@@ -14,14 +14,14 @@ export class HomeComponent implements OnInit ,AfterViewInit{
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    autoplay: true,
+    autoplay: false,
     touchDrag: false,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
     responsive: {
       0: {
-        items: 1
+        items: 4
       },
       400: {
         items: 2

@@ -12,7 +12,7 @@ export class ProjectService {
 
   get(path:string, config?:object)
   {
-    return this._http.get(environment.baseUrl +  path, {
+    return this._http.get(environment.baseUrl + '/api' +  path, {
       ...config,
       headers: {
         'Authorization': this.getToken() ?? ''
@@ -22,7 +22,7 @@ export class ProjectService {
 
   post(path:string, body:any, config?: any)
   {
-    return this._http.post(environment.baseUrl +  path, body, {
+    return this._http.post(environment.baseUrl+ '/api' +  path, body, {
       ...config,
       headers: {
         'Authorization': this.getToken() ?? ''
@@ -31,7 +31,7 @@ export class ProjectService {
   }
   put(path:string, body:any, config?: any)
   {
-    return this._http.put(environment.baseUrl +  path, body, {
+    return this._http.put(environment.baseUrl+ '/api' +  path, body, {
       ...config,
       headers: {
         'Authorization': this.getToken() ?? ''

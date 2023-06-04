@@ -104,7 +104,7 @@ userName='';
     * About Clients
    */
   private getAllClients(tenantId: number = 1, typeId: number = 1) {
-    this._apiService.get(`/services/app/User/GetAllUserByType?TenantId=${tenantId}&TypeID=${typeId}`).subscribe((response) => {
+    this._apiService.get(`/services/app/User/GetAllUserByType?TypeID=${typeId}`).subscribe((response) => {
       // @ts-ignore
       if (!response['error']) {
         // @ts-ignore
@@ -147,7 +147,7 @@ userName='';
    * About Contractors
    */
   private getAllConstructors(tenantId: number = 1, typeId: number = 2) {
-    this._apiService.get(`/services/app/User/GetAllUserByType?TenantId=${tenantId}&TypeID=${typeId}`).subscribe((response) => {
+    this._apiService.get(`/services/app/User/GetAllUserByType?TypeID=${typeId}`).subscribe((response) => {
       // @ts-ignore
       if (!response['error']) {
         // @ts-ignore

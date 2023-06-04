@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit ,AfterViewInit{
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    autoplay: false,
+    autoplay: true,
     touchDrag: false,
     pullDrag: true,
     dots: true,

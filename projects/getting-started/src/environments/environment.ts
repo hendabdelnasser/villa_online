@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //baseUrl: 'https://www.villaonline.co',
-  baseUrl: 'https://localhost:44311',
+  baseUrl: 'https://www.villaonline.co',
+  //baseUrl: 'https://localhost:44311',
   baseUrlNotification : 'https://localhost:44311/',
   invitationUrl:'https://villaonline.co'
 

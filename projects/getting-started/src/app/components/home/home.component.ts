@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit ,AfterViewInit{
   constructor(private _apiservice:ApiService,private router:Router) { }
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
+    mouseDrag: true,
+    autoplay: true,
     touchDrag: false,
-    pullDrag: false,
-    dots: false,
+    pullDrag: true,
+    dots: true,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -33,11 +33,12 @@ export class HomeComponent implements OnInit ,AfterViewInit{
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
   effect = 'scrollx';
   services:any;
   isLoaded=false;
+  picturesLength = 0;
   imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
   //imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 

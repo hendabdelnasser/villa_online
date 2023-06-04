@@ -494,19 +494,19 @@ textarea{
 //   width: 250px;
 //   margin: 0 auto;
 // }
-.partner-section-slider [nz-carousel-content] {
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-  width: 100%;
-  background-repeat: none;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
+// .partner-section-slider [nz-carousel-content] {
+//   text-align: center;
+//   color: #fff;
+//   overflow: hidden;
+//   width: 100%;
+//   background-repeat: none;
+//   background-size: contain;
+//   background-position: center center;
+//   background-repeat: no-repeat;
+// }
 
 .home-page-slider{
-  height: 700px;
+  height: 750px;
   @media (max-width:900px) {
     height:250px;
   }

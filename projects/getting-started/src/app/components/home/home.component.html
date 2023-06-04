@@ -182,7 +182,7 @@
           style="visibility: hidden; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeInUp;">شركاءنا
         </h3>
       </header>
-      <article class="row">
+      <article class="row" style="direction: ltr;">
         <div class="container">
            <!-- <div class="carousel slide " data-bs-ride="carousel" id="multi_item">
             <div class="carousel-inner">
@@ -224,15 +224,13 @@
               style="background-image: url('{{ imgUrl + part.url }}');">
               </div>
             </nz-carousel> -->
-            <owl-carousel-o [options]="customOptions">
-              <ng-template carouselSlide>Slide 1</ng-template>  
-    <ng-template carouselSlide>Slide 2</ng-template>  
-    <ng-template carouselSlide>Slide 3</ng-template>  
-              <!-- <ng-container *ngFor="let part of partners; let i = index">
-                <ng-template carouselSlide [id]="i.toString()">
-                  <img [src]="imgUrl + part.url">
-                </ng-template>
-              </ng-container> -->
+            <owl-carousel-o [options]="customOptions"  >
+
+              <ng-template carouselSlide *ngFor="let part of partners; let i = index" [id]="i.toString()" >
+                <div class="slide">
+                  <img  [src]="imgUrl + part.url" [alt]="i" [title]="i" width="200" height="200" style="padding: 0 10px;">
+                </div>
+              </ng-template>
           
             </owl-carousel-o>
           </div>
@@ -242,3 +240,4 @@
   </section>
 
 </section>
+

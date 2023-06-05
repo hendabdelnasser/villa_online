@@ -5,7 +5,7 @@ import { ResetPasswordComponent } from './components/register/reset-password/res
 import { LightgalleryModule } from 'lightgallery/angular/13';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { NgModule, Pipe } from '@angular/core';
+import { NgModule, Pipe,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +47,7 @@ import { InputsAddModelComponent } from './components/register/inputs-add-model/
 import { OurPartnersComponent } from './components/our-partners/our-partners.component';
 import { ConsultedsComponent } from './components/consulteds/consulteds.component';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 
 // import { ValuesPipe } from './components/home/pipe';
@@ -108,8 +109,7 @@ const paypalConfig: PaypalAppConfigModel = {
     FileUploadModule,
     ReactiveFormsModule,
     SharedModule,
-    LightgalleryModule,
-    
+    LightgalleryModule
     ],
     exports:[
       // HeaderComponent

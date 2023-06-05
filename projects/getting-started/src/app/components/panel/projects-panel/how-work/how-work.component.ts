@@ -1,28 +1,43 @@
-  import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+  import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
 import { environment } from 'projects/getting-started/src/environments/environment';
+import { RichTextTools } from '../../../../services/rich-text.setting'
+import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-how-work',
   templateUrl: './how-work.component.html',
-  styleUrls: ['./how-work.component.scss']
+  styleUrls: ['./how-work.component.scss'],
+  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
 })
-export class HowWorkComponent implements OnInit {
+export class HowWorkComponent implements OnInit, AfterViewInit {
 
   projects=[];
   isLoaded:boolean=false;
+  baseUrl: string = "";
  formData : FormData = new FormData();
- project={id: '',title:'',data:'',order:0,typeID:0}
+ tools: object = RichTextTools;
+ showRichTextEditor = false;
+ project={id: '',title:'',data:'',order:0,typeID:0};
  //imgUrl:string='https://localhost:44311/wwwroot/Uploads/panal/';
   imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
 
 
-  constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
+  constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { 
+
+    this.baseUrl = (window.location.protocol.includes('https') ? 'wss' : 'ws') + `://${location.host}/`
+  }
 
   ngOnInit(): void {
-    this.getProjects()
+    this.getProjects();
   }
+
+
+  ngAfterViewInit(): void {
+    this.showRichTextEditor = true;
+  }
+
   getProjects(){
     this._dashService.get(`/services/app/HomePanal/GetAllHowWork?tenantId=1`).subscribe(
       (res=>{

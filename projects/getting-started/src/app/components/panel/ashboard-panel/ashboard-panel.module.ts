@@ -4,7 +4,6 @@ import { ProjectsComponent } from '../projects-panel/projects/projects.component
 import { FormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { AshboardPanelRoutingModule } from './ashboard-panel-routing.module';
 import { AshboardPanelComponent } from './ashboard-panel.component';
@@ -50,8 +49,7 @@ import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-an
     CommonModule,
     AshboardPanelRoutingModule,
     FormsModule,
-   NzSpinModule ,
-   RichTextEditorModule
+   NzSpinModule
 
   ]
 })

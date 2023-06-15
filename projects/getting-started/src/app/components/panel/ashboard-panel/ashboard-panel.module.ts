@@ -51,7 +51,11 @@ import { SupportComponent } from '../projects-panel/support/support.component';
     CommonModule,
     AshboardPanelRoutingModule,
     FormsModule,
+<<<<<<< HEAD
    NzSpinModule 
+=======
+   NzSpinModule
+>>>>>>> 73312e595339bc42ee6cde230526fad8daa1957c
 
   ]
 })

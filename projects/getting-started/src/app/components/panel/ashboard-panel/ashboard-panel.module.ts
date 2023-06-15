@@ -4,7 +4,6 @@ import { ProjectsComponent } from '../projects-panel/projects/projects.component
 import { FormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { AshboardPanelRoutingModule } from './ashboard-panel-routing.module';
 import { AshboardPanelComponent } from './ashboard-panel.component';
@@ -23,6 +22,7 @@ import { ContactUsMethodComponent } from '../projects-panel/contact-us-method/co
 import { BePartnerComponent } from '../projects-panel/be-partner/be-partner.component';
 import { ConsultedComponent } from '../projects-panel/consulted/consulted.component';
 import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-answers/questions-and-answers.component';
+import { SupportComponent } from '../projects-panel/support/support.component';
 
 
 
@@ -44,14 +44,14 @@ import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-an
     ContactUsMethodComponent,
     BePartnerComponent,
     ConsultedComponent,
-    QuestionsAndAnswersComponent
+    QuestionsAndAnswersComponent,
+    SupportComponent
   ],
   imports: [
     CommonModule,
     AshboardPanelRoutingModule,
     FormsModule,
-   NzSpinModule ,
-   RichTextEditorModule
+   NzSpinModule 
 
   ]
 })

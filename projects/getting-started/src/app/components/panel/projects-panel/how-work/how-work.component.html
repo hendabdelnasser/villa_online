@@ -83,16 +83,9 @@
           </div>
           <div class="col-lg-12 mb-2" >
             <span>شرح </span>
-            <!-- <textarea type="number" [(ngModel)]="project['data']" class="form-control mb-2" id="timeToComplete"
-              placeholder=""></textarea> -->
-              <ejs-richtexteditor
-              style="direction: ltr;"
-              #toolsRTE
-              id="defaultRTE"
-              [(value)]="project['data']"
-              [toolbarSettings]="tools"
-              *ngIf="showRichTextEditor"></ejs-richtexteditor>
-              {{project['data']}}
+            <textarea type="number" [(ngModel)]="project['data']" class="form-control mb-2" id="timeToComplete"
+              placeholder=""></textarea>
+              
           </div>
         </div>
         <div class="row">

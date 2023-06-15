@@ -97,25 +97,25 @@
         <i class="fa-solid fa-paper-plane"></i>
       </button>
        <textarea class="form-control" placeholder="ارسل"></textarea>  -->
-       <form #chatForm="ngForm" style="width: 100%">
+       <div  style="width: 100%">
           <div class="row">
             <div class="col-md-12">
-              <input type="text" placeholder="الاسم" class="form-control">
+              <input type="text" [(ngModel)]="project['name']" placeholder="الاسم" id="name" class="form-control">
             </div>
             <div class="col-md-12">
-              <input type="text" placeholder="الهاتف" class="form-control">
+              <input type="text" [(ngModel)]="project['phone']" placeholder="الهاتف" id="phone" class="form-control">
             </div>
             <div class="col-md-12">
-              <input type="text" placeholder="البريد الاكترونى" class="form-control">
+              <input type="text" [(ngModel)]="project['email']" placeholder="البريد الاكترونى" id="email" class="form-control">
             </div>
             <div class="col-md-12">
-              <textarea  placeholder="وصف المشكلة" class="form-control" style="height: 100px;"></textarea>
+              <textarea  placeholder="وصف المشكلة" [(ngModel)]="project['message']" class="form-control" id="message" style="height: 100px;"></textarea>
             </div>
             <div class="col-md-12">
-              <button type="submit" class="btn btn-success d-block w-100">إرسال</button>
+              <button type="button" class="btn btn-success d-block w-100" (click)="insertSupport()">إرسال</button>
             </div>
           </div>
-       </form>
+        </div>
     </div>
    </div> 
   </div>

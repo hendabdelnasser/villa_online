@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@microsoft/signalr": "^6.0.9",
-    "@syncfusion/ej2-angular-richtexteditor": "^19.3.55",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.1.3",
     "bxslider": "^4.2.14",

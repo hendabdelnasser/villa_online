@@ -2,14 +2,11 @@
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
 import { environment } from 'projects/getting-started/src/environments/environment';
-import { RichTextTools } from '../../../../services/rich-text.setting'
-import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-how-work',
   templateUrl: './how-work.component.html',
-  styleUrls: ['./how-work.component.scss'],
-  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
+  styleUrls: ['./how-work.component.scss']
 })
 export class HowWorkComponent implements OnInit, AfterViewInit {
 
@@ -17,7 +14,6 @@ export class HowWorkComponent implements OnInit, AfterViewInit {
   isLoaded:boolean=false;
   baseUrl: string = "";
  formData : FormData = new FormData();
- tools: object = RichTextTools;
  showRichTextEditor = false;
  project={id: '',title:'',data:'',order:0,typeID:0};
  //imgUrl:string='https://localhost:44311/wwwroot/Uploads/panal/';

@@ -3,6 +3,7 @@ import { ApiService } from './../../services/api.service';
 import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { environment } from 'projects/getting-started/src/environments/environment';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +11,9 @@ import { environment } from 'projects/getting-started/src/environments/environme
 })
 export class HomeComponent implements OnInit ,AfterViewInit{
 
-  constructor(private _apiservice:ApiService,private router:Router) { }
+  project={name:'',phone: '', email: '', message: '',id:0,tenantId:0}
+
+  constructor(private _apiservice:ApiService,private router:Router,private message:NzMessageService) { }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -18,7 +21,7 @@ export class HomeComponent implements OnInit ,AfterViewInit{
     touchDrag: false,
     pullDrag: true,
     dots: true,
-    navSpeed: 700,
+    navSpeed: 100,
     responsive: {
       0: {
         items: 4
@@ -133,5 +136,32 @@ getBanners(){
 getProject(){
   this.router.navigateByUrl("/projects")
 }
+
+
+insertSupport(){
+  // console.log(this.project)
+  this.isLoaded=false;
+  let fetch={
+    Name: this.project.name,
+    Phone: this.project.phone,
+    Email: this.project.email,
+    Message: this.project.message,
+    tenantId:1
+  }
+  this._apiservice.post(`/Support/InsertNewTicket`,fetch).subscribe(
+    (res=>{
+      //@ts-ignore
+      if(res['success']){
+       this.isLoaded=true;
+
+        this.message.create('success','تم اضافة البيانات بنجاح')
+        this.project={name: '',email:'',phone:'',message:'',id:0, tenantId: 0}
+      }else{
+        this.message.create('error','من فضلك حاول مرة اخري')
+      }
+    })
+    )
+  }
+
 }
 

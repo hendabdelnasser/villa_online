@@ -22,6 +22,7 @@ import { ContactUsMethodComponent } from '../projects-panel/contact-us-method/co
 import { BePartnerComponent } from '../projects-panel/be-partner/be-partner.component';
 import { ConsultedComponent } from '../projects-panel/consulted/consulted.component';
 import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-answers/questions-and-answers.component';
+import { SupportComponent } from '../projects-panel/support/support.component';
 
 
 
@@ -43,13 +44,18 @@ import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-an
     ContactUsMethodComponent,
     BePartnerComponent,
     ConsultedComponent,
-    QuestionsAndAnswersComponent
+    QuestionsAndAnswersComponent,
+    SupportComponent
   ],
   imports: [
     CommonModule,
     AshboardPanelRoutingModule,
     FormsModule,
+<<<<<<< HEAD
+   NzSpinModule 
+=======
    NzSpinModule
+>>>>>>> 73312e595339bc42ee6cde230526fad8daa1957c
 
   ]
 })

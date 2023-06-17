@@ -48,6 +48,8 @@ import { OurPartnersComponent } from './components/our-partners/our-partners.com
 import { ConsultedsComponent } from './components/consulteds/consulteds.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { BlogSectionComponent } from './components/panel/projects-panel/blog-section/blog-section.component';
+import { SingleBlogComponent } from './components/single-blog/single-blog.component';
 
 
 // import { ValuesPipe } from './components/home/pipe';
@@ -91,6 +93,8 @@ const paypalConfig: PaypalAppConfigModel = {
     OurPartnersComponent,
     ConsultedsComponent,
     QuestionsComponent,
+    SingleBlogComponent,
+    
   ],
   imports: [
     // CommonModule,

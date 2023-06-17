@@ -1,19 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DashboardPanelService } from '../../ashboard-panel/service/dashboard-panel.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { environment } from 'projects/getting-started/src/environments/environment';
 
 @Component({
-  selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  selector: 'app-blog-section',
+  templateUrl: './blog-section.component.html',
+  styleUrls: ['./blog-section.component.scss']
 })
-export class ContactUsComponent implements OnInit {
-  projects=[{id:0,url:''}];
+export class BlogSectionComponent {
+  projects=[{id:0,tenantId:0,blogTitle: '', blogContent: '', blogImage: ''}];
   isLoaded:boolean=false;
   formData : FormData = new FormData();
-  project={url:''}
-
+  project={id:0,tenantId:0,blogTitle: '', blogContent: '', blogImage: ''}
 
   constructor(private _dashService:DashboardPanelService,private message:NzMessageService) { }
 
@@ -24,7 +23,7 @@ export class ContactUsComponent implements OnInit {
   hasImg:boolean=false;
 
   getProjects(){
-    this._dashService.get(`/services/app/HomePanal/GetAllContactUSPanal?tenantId=1`).subscribe(
+    this._dashService.get(`/Blog/GetAllBlogs?tenantId=1`).subscribe(
       (res=>{
         this.isLoaded=true
         //@ts-ignore
@@ -101,16 +100,16 @@ images:any[]=[];
     this.images.splice(index,1);
     this.formData.delete('file'+index)
   }
-  addAbout(){
+  addBlog(){
     this.isLoaded=false
-    this._dashService.post(`/HomePanal/CreateNewContactUS`,this.formData).subscribe(
+    this._dashService.post(`/Blog/CreateBlog?blogTitle=${this.project.blogTitle}&blogContent=${this.project.blogContent}`,this.formData).subscribe(
       (res=>{
         //@ts-ignore
         if(res['success']){
       this.isLoaded=true
 
           this.message.create('success','تم اضافة البيانات بنجاح')
-          this.project={url:''}
+          this.project={id:0,tenantId:0,blogTitle: '', blogContent: '', blogImage: ''}
           this.images=[];
           this.formData.delete('file')
           this.getProjects()
@@ -120,11 +119,11 @@ images:any[]=[];
       })
       )
     }
-  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/panal/`;
+  imgUrl:string=`${environment.baseUrl}/wwwroot/Uploads/Blogs/`;
 
   deleteProject(id:number,index:number){
     this.isLoaded=false;
-    this._dashService.delete(`/services/app/HomePanal/DeleteContactUs?Id=${id}`).subscribe((response) => {
+    this._dashService.delete(`/Blog/DeleteBlog?id=${id}`).subscribe((response) => {
       //@ts-ignore
       if(response['success']){
         this.isLoaded=true
@@ -138,4 +137,41 @@ images:any[]=[];
     })
     );
   }
+
+
+  onModalUpdate(id:number){
+    this._dashService.get(`/Blog/GetSingleBlog?id=${id}`).subscribe((response: any) => {
+      //@ts-ignore
+      if(response['success']){
+        this.project.id = response['result'].id;
+        this.project.blogTitle = response['result'].blogTitle;
+        this.project.blogContent = response['result'].blogContent;
+        this.project.blogImage = response['result'].blogImage;
+      }
+
+    }, (error=>{
+      this.message.create('error',' حاول مرة أخري  ')
+    })
+    );
   }
+
+  updateProject(){
+    this.isLoaded=false
+    this._dashService.put(`/Blog/UpdateBlog?blogId=${this.project.id}&blogTitle=${this.project.blogTitle}&blogContent=${this.project.blogContent}`,this.formData).subscribe(
+      (res=>{
+        //@ts-ignore
+        if(res['success']){
+          this.isLoaded=true
+
+          this.message.create('success','تم اضافة البيانات بنجاح')
+          this.project={id:0,tenantId:0,blogTitle: '', blogContent: '', blogImage: ''}
+          this.images=[];
+          this.formData.delete('file')
+          this.getProjects()
+        }else{
+          this.message.create('error','من فضلك حاول مرة اخري')
+        }
+      })
+      )
+  }
+}

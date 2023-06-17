@@ -1,0 +1,207 @@
+.clients {
+    header {
+      h4 {
+          color: #343434;
+          margin-bottom: 25px;
+      }
+      .add-service-btn{
+        background-color: #1e3555;
+        color: #fff;
+        float: left;
+        &:hover{
+          background-color: #fff;
+          color: #1e3555;
+          border:1px solid #1e3555;
+        }
+      }
+    }
+    article {
+      .form-section {
+          margin-bottom: 30px;
+          border-bottom: 1px solid #e4e4e4;
+          select {
+              background-position: left 0.75rem center;
+              padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+              color: #444;
+              background-color: #eeeeee;
+          }
+          ::placeholder {
+              color: #444;
+          }
+          input {
+              color: #444;
+              background-color: #eeeeee;
+          }
+          button {
+              width: 100%;
+              background: #1e3555;
+              border: 1px solid #1e3555;
+              min-height: 38px;
+              border-radius: 0.25rem;
+              color: #fff;
+              outline: none;
+              transition: all .3s;
+              &:hover {
+                  background-color: transparent;
+                  color: #1E3555;
+              }
+          }
+      }
+      .results {
+          h5 {
+              position: relative;
+              padding-right: 20px;
+              font-size: 20px;
+              margin-bottom: 30px;
+              margin-top: 20px;
+              &::before {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  height: 100%;
+                  width: 4px;
+                  background-color: #EA4335;
+              }
+          }
+      }
+      table {
+          thead {
+              background-color: #1e3555;
+              tr {
+                  th {
+                      color: #fff;
+                      font-weight: 100;
+                      vertical-align: middle;
+                  }
+              }
+          }
+          tbody {
+              tr {
+                  &:nth-child(even) {
+                      background-color: #f2f2f2;
+                  }
+                  th {
+                      font-weight: 100;
+                      color: #474747;
+                      vertical-align: middle;
+                  }
+                  td {
+                      color: #2d2d2d;
+                      vertical-align: middle;
+                      .status {
+                          svg {
+                              color: #1E3555;
+                          }
+                      }
+                      .dropdown {
+                          button {
+                              background: transparent;
+                              border: none;
+                          }
+                          .dropdown-menu {
+                              background-color: #f2f2f2;
+                              li {
+                                  a {
+                                      display: flex;
+                                      align-items: center;
+                                      justify-content: space-between;
+                                      line-height: 30px;
+                                      span {
+                                          color: #2d2d2d;
+                                      }
+                                      svg {
+                                          color: #ea4335;
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    }
+    }
+    .upload-files {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #EEEEEE;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      margin-bottom: 10px;
+      border: 2px dashed #afaeae;
+      .add-file-btn {
+          margin-left: 5px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          button {
+              width: 100px;
+              height: 100px;
+              border-radius: 4px;
+              background-color: #d1cdcd;
+              border: none;
+              svg {
+                  color: #fff;
+              }
+          }
+      }
+      .img-ulpoad {
+          margin-left: 5px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          position: relative;
+          .form-group{
+            flex-wrap: wrap;
+          }
+          img {
+              width: 100px;
+              height: 100px;
+              border-radius: 4px;
+          }
+          .delete-btn {
+              position: absolute;
+              top: 0px;
+              right: 5px;
+              button {
+                  all: unset;
+                  cursor: pointer;
+                  img {
+                      width: 15px;
+                      height: 15px;
+                  }
+              }
+          }
+      }
+  }
+  button.add-stage {
+      box-sizing: border-box;
+      margin-top: 20px;
+      background: #fff;
+      color: #565656;
+      border: 1px solid;
+      padding: 7px 10px;
+      min-width: 140px;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s;
+      border: 1px solid #a4a4a4;
+      svg {
+          margin-left: 5px;
+      }
+  }
+  button.add {
+      box-sizing: border-box;
+      margin-top: 20px;
+      background: #1e3555;
+      color: #fff;
+      border: 1px solid;
+      padding: 9px 10px;
+      min-width: 160px;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s;
+      svg {
+          margin-left: 5px;
+      }
+  }
+  

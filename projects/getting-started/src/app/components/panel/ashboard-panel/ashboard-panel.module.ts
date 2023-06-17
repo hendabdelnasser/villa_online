@@ -23,6 +23,7 @@ import { BePartnerComponent } from '../projects-panel/be-partner/be-partner.comp
 import { ConsultedComponent } from '../projects-panel/consulted/consulted.component';
 import { QuestionsAndAnswersComponent } from '../projects-panel/questions-and-answers/questions-and-answers.component';
 import { SupportComponent } from '../projects-panel/support/support.component';
+import { BlogSectionComponent } from '../projects-panel/blog-section/blog-section.component';
 
 
 
@@ -45,18 +46,14 @@ import { SupportComponent } from '../projects-panel/support/support.component';
     BePartnerComponent,
     ConsultedComponent,
     QuestionsAndAnswersComponent,
-    SupportComponent
+    SupportComponent,
+    BlogSectionComponent
   ],
   imports: [
     CommonModule,
     AshboardPanelRoutingModule,
     FormsModule,
-<<<<<<< HEAD
    NzSpinModule 
-=======
-   NzSpinModule
->>>>>>> 73312e595339bc42ee6cde230526fad8daa1957c
-
   ]
 })
 export class AshboardPanelModule { }

@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<section class="blogs" id="blogs">
+    <div class="box-container">
+        <div class="col-lg-12">
+            <h4 class="text-center fw-bold mb-4 mt-3">{{ blog.blogTitle }}</h4>
+            <img [src]="imgUrl + blog.blogImage" alt="" class="d-block">
+            <!-- <div class="line"></div> -->
+            <p class="fw-bold mt-5">{{ blog.blogContent}}</p>
+        </div> 
+    </div>
+</section>

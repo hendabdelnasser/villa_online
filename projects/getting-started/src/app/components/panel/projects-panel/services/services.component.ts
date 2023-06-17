@@ -153,7 +153,7 @@ images:any[]=[];
   }
   update(){
     debugger
-    console.log(this.servr);
+    
     this._dashService.post(`/servicepanal/Update?serciceid=1&Title=${this.servr[0]['title']}&Data=${this.servr[0]['data']}&order=${this.servr[0]['order']}`,this.formData).subscribe(
       (res=>{
         //@ts-ignore

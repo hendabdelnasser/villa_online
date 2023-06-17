@@ -18,6 +18,7 @@ import { ConsultedComponent } from './components/panel/projects-panel/consulted/
 import { ConsultedsComponent } from './components/consulteds/consulteds.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { SupportComponent } from './components/panel/projects-panel/support/support.component';
+import { SingleBlogComponent } from './components/single-blog/single-blog.component';
 
 
 // import { AboutComponent } from './components/about/about.component';
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: `reset-password`, component: ResetPasswordComponent },
   { path: `forget-password`, component: ForgetPasswordComponent },
   {path: `blog`, component: BlogComponent},
+  {path: `single-blog/:id`, component: SingleBlogComponent},
   {path: `be-partner`, component: OurPartnersComponent},
   {path: `consulteds`, component: ConsultedsComponent},
   {path: `questions`, component: QuestionsComponent},

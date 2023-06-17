@@ -2,62 +2,14 @@
 <section class="blogs" id="blogs">
 <div class="box-container">
 
-    <div class="box col-lg-4">
-        <img src="../../../assets/home/2.png" alt="">
-        <h4 >عنوان المدونة</h4>
+    <div class="box col-lg-4" style="cursor: pointer;" *ngFor="let item of projects" routerLink="/single-blog/{{ item.id }}">
+        <img [src]="imgUrl + item.blogImage" alt="">
+        <h4>{{ item.blogTitle }}</h4>
         <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
+        <p>{{ item.blogContent.slice(0, 10) + ' ....' }}</p>
  
     </div>
-    <div class="box col-lg-4">
-        
-        <img src="../../../assets/home/2.png" alt="">
-        <h4>عنوان المدونة2</h4>
-        <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
-
-        
-    </div>
-
-    <div class="box col-lg-4">
-        
-        <img src="../../../assets/home/2.png" alt="">
-        <h4>عنوان المدونة 3</h4>
-        <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
-
-        
-    </div>
-
-    <div class="box col-lg-4">
-        
-        <img src="../../../assets/projects/project2.png" alt="">
-        <h4>عنوان المدونة 4</h4>
-        <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
-
-        
-    </div>
-
-    <div class="box col-lg-4">
-        
-        <img src="../../../assets/projects/user1.png" alt="">
-        <h4>عنوان المدونة 5</h4>
-        <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
-
-        
-    </div>
-
-    <div class="box col-lg-4">
-        
-        <img src="../../../assets/projects/user2.png" alt="">
-        <h4>عنوان المدونة 6</h4>
-        <div class="line"></div>
-        <p>وصف تعتبر هذة الدونة</p>
-
-        
-    </div>
+    
        
     </div>
 

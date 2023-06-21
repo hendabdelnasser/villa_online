@@ -112,7 +112,7 @@
               <textarea  placeholder="وصف المشكلة" [(ngModel)]="project['message']" class="form-control" id="message" style="height: 100px;"></textarea>
             </div>
             <div class="col-md-12">
-              <button type="button" class="btn btn-success d-block w-100" (click)="insertSupport()">إرسال</button>
+              <button type="button" class="btn btn-success d-block w-100" data-bs-toggle="modal" data-bs-target="#exampleModalSupportChat" (click)="insertSupport()">إرسال</button>
             </div>
           </div>
         </div>
@@ -245,3 +245,24 @@
 
 </section>
 
+<div class="modal fade" id="exampleModalSupportChat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" #encasUnPwModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">المحادثة مع الدعم</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <!-- <div class="col-lg-12 mb-2">
+                <span>وسيلة التواصل </span>
+                  <input type="text" [(ngModel)]="project['key']" class="form-control mb-2" id="phaseDefinition" placeholder="">
+              </div> -->
+          </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button> -->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">إرسال</button>
+      </div>
+    </div>
+</div>

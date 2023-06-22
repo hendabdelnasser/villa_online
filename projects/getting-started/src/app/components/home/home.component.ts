@@ -4,6 +4,7 @@ import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, AfterViewIn
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { environment } from 'projects/getting-started/src/environments/environment';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { CurrentUserService } from '../../services/current-user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,9 +12,15 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class HomeComponent implements OnInit ,AfterViewInit{
 
-  project={name:'',phone: '', email: '', message: '',id:0,tenantId:0}
+  project={name:'',phone: '', email: '', message: '',id:0,tenantId:0};
+  supportChat = {id: 0, tenantId: 0, message: '', supportId: 0, createdByUser: '', createdByUserId:'', createdOn: ''};
+  supportChatList = [];
 
-  constructor(private _apiservice:ApiService,private router:Router,private message:NzMessageService) { }
+
+  constructor(private _apiservice:ApiService,
+              private router:Router,
+              private message:NzMessageService,
+              private currentUser: CurrentUserService) { }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -67,7 +74,13 @@ export class HomeComponent implements OnInit ,AfterViewInit{
     this.getHowWork();
     this.getProfessional();
     this.getProfessionalPic();
+
+    console.log("Current User : " +  this.currentUser.currentUser)
   }
+
+
+
+
   profissional=[{data:'',professionalismPanalPics:[{url:''}]}]
   getProfessional(){
     this._apiservice.get(`/services/app/HomePanal/GetAllProfessionalismPanal?tenantId=1`).subscribe(
@@ -139,7 +152,6 @@ getProject(){
 
 
 insertSupport(){
-  // console.log(this.project)
   this.isLoaded=false;
   let fetch={
     Name: this.project.name,
@@ -149,19 +161,20 @@ insertSupport(){
     tenantId:1
   }
   this._apiservice.post(`/Support/InsertNewTicket`,fetch).subscribe(
-    (res=>{
-      //@ts-ignore
-      if(res['success']){
-       this.isLoaded=true;
+      (res=>{
+        //@ts-ignore
+        if(res['success']){
+        this.isLoaded=true;
 
-        this.message.create('success','تم اضافة البيانات بنجاح')
-        this.project={name: '',email:'',phone:'',message:'',id:0, tenantId: 0}
-      }else{
-        this.message.create('error','من فضلك حاول مرة اخري')
-      }
-    })
+          this.message.create('success','تم اضافة البيانات بنجاح')
+          this.project={name: '',email:'',phone:'',message:'',id:0, tenantId: 0};
+
+
+        } else{
+          this.message.create('error','من فضلك حاول مرة اخري')
+        }
+      })
     )
   }
-
 }
 

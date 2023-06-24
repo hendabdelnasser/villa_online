@@ -4,7 +4,7 @@ import { Component, OnInit, AfterContentInit, ViewChild, ElementRef, AfterViewIn
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { environment } from 'projects/getting-started/src/environments/environment';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { CurrentUserService } from '../../services/current-user.service';
+import { SignalRService } from '../../services/signal-rservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,12 +15,16 @@ export class HomeComponent implements OnInit ,AfterViewInit{
   project={name:'',phone: '', email: '', message: '',id:0,tenantId:0};
   supportChat = {id: 0, tenantId: 0, message: '', supportId: 0, createdByUser: '', createdByUserId:'', createdOn: ''};
   supportChatList = [];
+  currentUser = {userName: '', userId: 0}
+
+  messageContent = '';
+  supportId = 0;
 
 
   constructor(private _apiservice:ApiService,
               private router:Router,
               private message:NzMessageService,
-              private currentUser: CurrentUserService) { }
+              private _signalR: SignalRService) { }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -74,15 +78,27 @@ export class HomeComponent implements OnInit ,AfterViewInit{
     this.getHowWork();
     this.getProfessional();
     this.getProfessionalPic();
-
-    console.log("Current User : " +  this.currentUser.currentUser)
+    this.GetCurrentUser();
+    this.onRecieveMessage();
   }
 
+  GetCurrentUser(){
+    let userStorage = localStorage.getItem('user');
 
+    if(userStorage){
+      let user = JSON.parse(userStorage.toString());
+
+      this.currentUser.userId = user.userId;
+      this.currentUser.userName = user.userName
+
+      
+    }
+  }
 
 
   profissional=[{data:'',professionalismPanalPics:[{url:''}]}]
   getProfessional(){
+
     this._apiservice.get(`/services/app/HomePanal/GetAllProfessionalismPanal?tenantId=1`).subscribe(
       (res=>{
         //@ts-ignore
@@ -161,20 +177,63 @@ insertSupport(){
     tenantId:1
   }
   this._apiservice.post(`/Support/InsertNewTicket`,fetch).subscribe(
-      (res=>{
+      (res: any)=>{
         //@ts-ignore
         if(res['success']){
-        this.isLoaded=true;
-
+          this.isLoaded=true;
           this.message.create('success','تم اضافة البيانات بنجاح')
           this.project={name: '',email:'',phone:'',message:'',id:0, tenantId: 0};
 
+          // this._apiservice.get(`/Support/GetSupportChat?supportId=${res['result']}`).subscribe(
+          //   (chat: any) => {
+
+          //     this.supportChatList = chat['result']
+          //   }
+          // );
+          this.getSingleSupportChat(res['result']);
 
         } else{
           this.message.create('error','من فضلك حاول مرة اخري')
         }
       })
-    )
+}
+
+getSingleSupportChat(id: number){
+  this.supportId = id;
+
+  this._apiservice.get(`/Support/GetSupportChat?supportId=${id}`).subscribe(
+    (res: any)=>{
+      this.isLoaded=true
+      //@ts-ignore
+      if(res['success']){
+        this.supportChatList = res['result'];
+      }
+    })
+}
+
+sendMessage(){
+  let chatRequest = {
+    message: this.messageContent,
+    supportId: this.supportId,
+    createdByUserId: this.currentUser.userId,
+    toUser: 'admin',
+    tenantId:1
+  }
+
+  this._apiservice.post(`/Support/SendSupportMessage`, chatRequest).subscribe(
+    (res: any)=>{
+      if(res['success']){
+        this.messageContent = '';
+        this.getSingleSupportChat(this.supportId);
+      }
+    }) 
+  }
+
+  onRecieveMessage(){
+    console.log("tracking...");
+    this._signalR.on('RecieveMessage', (SupportId) => {
+      this.getSingleSupportChat(SupportId);
+    })
   }
 }
 

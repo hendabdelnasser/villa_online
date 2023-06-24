@@ -123,6 +123,20 @@
       }
     }
     }
+
+    .page-header{
+        background-image: url('/assets/contact/contact-header.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 4rem 0;
+
+        h3{
+            color: #fff;
+            font-size: 35px;
+            text-align: center;
+        }
+    }
     .upload-files {
       display: flex;
       flex-wrap: wrap;
@@ -206,7 +220,6 @@
       }
   }
 
-
   .chatList{
     overflow-y: scroll;
     height: 250px;
@@ -215,4 +228,5 @@
   
   .chatList .Sender span,
   .chatList .Receiver span{font-size: 10px;}
+  
   

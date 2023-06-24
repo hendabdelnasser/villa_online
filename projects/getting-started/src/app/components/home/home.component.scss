@@ -525,5 +525,11 @@ textarea{
   background-repeat: no-repeat;
 }
 
+.chatList{
+  overflow-y: scroll;
+  height: 250px;
+  font-weight: normal;
+}
 
-
+.chatList .Sender span,
+.chatList .Receiver span{font-size: 10px;}

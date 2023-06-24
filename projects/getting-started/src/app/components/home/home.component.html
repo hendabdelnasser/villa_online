@@ -255,17 +255,31 @@
       <div class="modal-body">
           <div class="row">
             <div class="col-lg-12 mb-2">
-              <section class="chatList">
+              <section class="chatList border border-2 p-2">
 
-                <div class="d-flex flex-row mb-3">
-                  <div class="p-2">Flex item 1</div>
+                <div *ngFor="let chat of supportChatList" 
+                  [ngClass]="(chat['createdByUser'] === currentUser.userName|| !chat['createdByUser'] || currentUser.userName === '') && chat['createdByUserId'] ===  currentUser.userId? 'Sender' : 'Receiver'">
+                  <span class="text-secondary text-capitalize d-block" [ngClass]="(chat['createdByUser'] === currentUser.userName|| !chat['createdByUser'] || currentUser.userName === '') && chat['createdByUserId'] ===  currentUser.userId ? 'text-end' : 'text-start'">
+                    {{ (chat['createdByUser'] === currentUser.userName|| !chat['createdByUser'] || currentUser.userName === '') && chat['createdByUserId'] ===  currentUser.userId ? 'أنت' :  chat['createdByUser']}}
+                  </span>
+                    <div [ngClass]="(chat['createdByUser'] === currentUser.userName|| !chat['createdByUser'] || currentUser.userName === '') && chat['createdByUserId'] ===  currentUser.userId? 'd-flex flex-row mb-2' : 'd-flex flex-row-reverse'">
+                      <p>{{ chat['message'] }}</p>
+                    </div>
                 </div>
 
-                <div class="d-flex flex-row-reverse">
-                  <div class="p-2">Flex item 1</div>
-                </div>
+                <!-- <div class="Receiver">
+                  <span class="text-secondary text-capitalize text-start d-block">admin</span>
+                  <div class="d-flex flex-row-reverse">
+                    <div>Flex item 1</div>
+                  </div>
+                </div> -->
 
               </section>
+
+              <div class="col-lg-12 mb-2">
+                <textarea type="text" class="form-control mt-2" [(ngModel)]="messageContent" id="phaseDefinition" placeholder="الرسالة"></textarea>
+              </div>
+
             </div>
           </div>
 
@@ -278,7 +292,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button> -->
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">إرسال</button>
+        <button type="button" class="btn btn-primary" (click)="sendMessage()">إرسال</button>
       </div>
     </div>
 </div>

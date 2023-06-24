@@ -33,8 +33,7 @@ export class SignalRService {
       this.hubConnection.start()
         .then(() => {
           this.onConnected.emit();
-          console.log('SignalR Connected...')
-          console.log('SignalR Connected...' + environment.baseUrl +  '/SupportSignalR')
+          console.log("signal r coneccted ...")
         })
         .catch((res:any) => {
           console.log(res)

@@ -50,6 +50,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { BlogSectionComponent } from './components/panel/projects-panel/blog-section/blog-section.component';
 import { SingleBlogComponent } from './components/single-blog/single-blog.component';
+import { SupportChatComponent } from './components/support-chat/support-chat.component';
 
 
 // import { ValuesPipe } from './components/home/pipe';
@@ -94,6 +95,7 @@ const paypalConfig: PaypalAppConfigModel = {
     ConsultedsComponent,
     QuestionsComponent,
     SingleBlogComponent,
+    SupportChatComponent,
     
   ],
   imports: [

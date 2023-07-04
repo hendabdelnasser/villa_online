@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit ,AfterViewInit{
     touchDrag: false,
     pullDrag: true,
     dots: true,
-    navSpeed: 100,
+    navSpeed: true,
+    fluidSpeed: true,
+    autoplayTimeout: 700,
     responsive: {
       0: {
         items: 4

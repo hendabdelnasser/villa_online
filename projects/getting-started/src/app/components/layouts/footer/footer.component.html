@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-10">
           <div class="row row-col-1">
-            <div class="col col-md-3" >
+            <div class="col col-md-2" >
               <ul class="list-unstyled" >
                 <div style="color: black;">
                 فيلا اون لاين
@@ -63,7 +63,7 @@
     
             </div>
           
-            <div class="col col-md-3">
+            <div class="col col-md-2">
               <ul class="list-unstyled">
                 <div style="color: black;">
                   خدمه العملاء
@@ -126,12 +126,7 @@
                       <a href="{{ item['extraLink'] }}" target="_blank"  
                         style="color: black; ">{{ item['key'] }} : {{  item['value']}}</a>
                     </li>
-                    <li>
-                      <a style="display: block;width: 10%; margin-right: 0 auto;margin-right: 20px;"
-                        href="https://goo.gl/maps/48hAVd9iMxA8TtBR6?coh=178573&entry=tt" target="_blank">
-                        <img src="{{ locationImage }}" class="border rounded-circle" width="50" height="50" alt="">
-                      </a>
-                    </li>
+                   
                     <!-- <li>
                       <a style="color: black;">{{ ContactMethodObject[1].key }}: {{ ContactMethodObject[1].value }}</a>
                     </li>
@@ -177,7 +172,17 @@
                                     </a>
                                 </li> -->
                 <!-- </ul> -->
-              </div>
+            </div>
+            <div class="col col-md-2">
+            <ul>
+              <li>
+                <a style="display: block;width: 10%; margin-right: 0 auto;margin-right: 20px;"
+                  href="https://goo.gl/maps/48hAVd9iMxA8TtBR6?coh=178573&entry=tt" target="_blank">
+                  <img src="{{ locationImage }}" class="border" width="400" height="200" alt="">
+                </a>
+              </li>
+            </ul>
+            </div>
           </div>
         </div>
         
@@ -185,7 +190,7 @@
      </div>
      
   </div>
-      <div class="footer d-flex justify-content-between">
+      <div class="footer d-flex justify-content-end">
         <div style="color: black;">{{year}} villaonline</div>
         <!-- <div><a routerLink="/privacy" style="color:black">سياسة الخصوصية</a></div> -->
 

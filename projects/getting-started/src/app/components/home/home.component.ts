@@ -82,6 +82,7 @@ export class HomeComponent implements OnInit ,AfterViewInit{
     this.getProfessionalPic();
     this.GetCurrentUser();
     this.onRecieveMessage();
+    this._signalR.startConnection();
   }
 
   GetCurrentUser(){
